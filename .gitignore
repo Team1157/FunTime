@@ -11,6 +11,7 @@ dist/
 local.properties
 .settings/
 .loadpath
+HappyLochNess/.gitignore
 
 # Eclipse Core
 .project
