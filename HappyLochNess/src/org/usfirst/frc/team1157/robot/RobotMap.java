@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1157.robot;
 
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.CANJaguar;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Jaguar;
  */
 public class RobotMap {
 	
-	public static Jaguar rollerMotor = new Jaguar(0);
+	public static CANJaguar rollerMotor = new CANJaguar(2);
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;
