@@ -27,6 +27,16 @@ public class Roller extends Subsystem {
 	public void rollerControl(Joystick joy) {
 		motor.set(joy.getY());
 	}
+
+	public static boolean speed(double speed) {
+		if (speed < 1 || speed > -1) {
+			motor.set(speed);
+		} else {
+			return false;
+		}
+		return true;
+	}
+
 	public static void forward() {
 		motor.set(1.0);
 
@@ -40,4 +50,3 @@ public class Roller extends Subsystem {
 		motor.set(0.0);
 	}
 }
-
