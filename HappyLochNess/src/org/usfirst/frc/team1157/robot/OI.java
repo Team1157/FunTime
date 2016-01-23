@@ -9,13 +9,17 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class OI {
 	private Joystick joy = new Joystick(0);
-	
+	private Joystick joy2 = new Joystick(1);
 	public OI() {
 		
 	}
 	
-	public Joystick getJoystick() {
-		return joy;
+	public Joystick getJoystick(int joyNumber) {
+		if(joyNumber == 0) {
+			return joy;
+		} else {
+			return joy2;
+		}
 	}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
