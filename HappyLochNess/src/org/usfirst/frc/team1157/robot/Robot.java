@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 
@@ -33,7 +35,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-        //chooser.addDefault("Default Auto", new ExampleCommand());
+        chooser.addDefault("drive 5 sec 1/2 pow", new DriveAuto(5,0.5,0.5));
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
@@ -62,18 +64,8 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
+        autonomousCommand.start();
         
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
