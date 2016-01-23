@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem {
     	drive.tankDrive(left, right);
     }
     public void drive(Joystick joy) {
-    	drive(-joy.getY(), -joy.getAxis(AxisType.kThrottle));
+    	drive(joy.getY(), joy.getZ());
     }
 }
 
