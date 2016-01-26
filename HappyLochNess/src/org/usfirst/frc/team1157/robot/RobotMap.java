@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.CANJaguar;
  */
 public class RobotMap {
 	
-	public static CANJaguar rollerMotor = new CANJaguar(6);
+	public static CANJaguar rollerMotor = new CANJaguar(2);
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;

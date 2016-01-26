@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1157.robot.subsystems;
 
 import org.usfirst.frc.team1157.robot.RobotMap;
+import org.usfirst.frc.team1157.robot.commands.RollerWithJoystick;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Joystick;
@@ -21,7 +22,7 @@ public class Roller extends Subsystem {
 		motor.enableControl();
 		motor.set(0.0);
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new RollerWithJoystick());
 	}
 
 	public void rollerControl(Joystick joy) {
