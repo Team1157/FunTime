@@ -35,6 +35,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
+        roller = new Roller();
         //chooser.addDefault("drive 5 sec 1/2 pow", new DriveAuto(5,0.5,0.5));
         //chooser.addObject("My Auto", new MyAutoCommand());
         //SmartDashboard.putData("Auto mode", chooser);
