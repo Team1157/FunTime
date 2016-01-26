@@ -1,20 +1,19 @@
-
 package org.usfirst.frc.team1157.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team1157.robot.Robot;
+import org.usfirst.frc.team1157.robot.subsystems.Roller;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class RollerWithJoystick extends Command {
 
-	boolean finished = false;
-	
-    public ExampleCommand() {
+    public RollerWithJoystick() {
+    	requires(Robot.roller);
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -23,25 +22,22 @@ public class ExampleCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	int x = 0;
-    	if(x>5){
-    		finished = true;
-    	}else{
-    		x++;
-    	}
+    	Robot.roller.rollerControl(Robot.oi.getJoystick(1));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Roller.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
