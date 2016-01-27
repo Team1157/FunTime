@@ -40,7 +40,11 @@ public class DriveTrain extends Subsystem {
     	drive.arcadeDrive(speed, rotate, true);
     }
     public void drive(Joystick joy) {
-    	drive(-joy.getY(), joy.getZ());
+    	if (joy.getTrigger()) {
+    		drive(-joy.getY(), joy.getZ());
+    	} else {
+    		drive(joy.getY(), -joy.getZ());
+    	}
     }
 }
 
