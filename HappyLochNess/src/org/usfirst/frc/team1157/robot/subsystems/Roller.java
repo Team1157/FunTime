@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Roller extends Subsystem {
 
-	static CANJaguar motor = RobotMap.rollerMotor;
-
+	CANJaguar motor = RobotMap.rollerMotor;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
-	public void initDefaultCommand() {
+	public void initDefaultCommand(){
+		
 		motor.setPercentMode();
 		motor.enableControl();
 		motor.set(0.0);
@@ -30,7 +30,7 @@ public class Roller extends Subsystem {
 		motor.set(joy.getY());
 	}
 
-	public static boolean speed(double speed) {
+	public boolean speed(double speed) {
 		if (speed < 1 || speed > -1) {
 			motor.set(speed);
 		} else {
@@ -39,16 +39,16 @@ public class Roller extends Subsystem {
 		return true;
 	}
 
-	public static void forward() {
+	public void forward() {
 		motor.set(1.0);
 
 	}
 
-	public static void backward() {
+	public void backward() {
 		motor.set(-1.0);
 	}
 
-	public static void stop() {
+	public void stop() {
 		motor.set(0.0);
 	}
 }

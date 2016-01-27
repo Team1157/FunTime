@@ -26,11 +26,11 @@ public class RollerMove extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (direction == 1) {
-			Roller.forward();
+			Robot.roller.forward();
 		} else if (direction == -1) {
-			Roller.backward();
+			Robot.roller.backward();
 		} else {
-			Roller.stop();
+			Robot.roller.stop();
 		}
 	}
 

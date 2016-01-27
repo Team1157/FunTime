@@ -5,12 +5,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team1157.robot.commands.RollerMove;
-
-import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,10 +19,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final Roller roller = new Roller();
-
+	public static Roller roller;// = new Roller();
 	public static OI oi;
-	public static DriveTrain drivetrain;
+	public static DriveTrain drivetrain = new DriveTrain();
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -35,9 +30,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Brute Force", new DriveAuto(5,0.5,0.5));
+        //chooser.addDefault("Brute Force", new DriveAuto(5,0.5,0.5));
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }

@@ -24,10 +24,10 @@ public class DriveTrain extends Subsystem {
     public DriveTrain() {
     	super();
     	frontRight = new CANJaguar(2);
-    	backRight = new CANJaguar(3);
-    	backLeft = new CANJaguar(4);
+    	//backRight = new CANJaguar(3);
+    	//backLeft = new CANJaguar(4);
     	frontLeft = new CANJaguar(5);
-    	drive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
+    	drive = new RobotDrive(frontLeft, frontRight);
     	
     }
     public void initDefaultCommand() {
@@ -35,11 +35,11 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void drive(double left, double right) {
-    	drive.tankDrive(left, right);
+    public void drive(double speed, double rotate) {
+    	drive.arcadeDrive(speed, rotate, true);
     }
     public void drive(Joystick joy) {
-    	drive(joy.getY(), joy.getZ());
+    	drive(-joy.getY(), joy.getZ());
     }
 }
 

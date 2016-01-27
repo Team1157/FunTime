@@ -32,7 +32,7 @@ public class RollerWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Roller.stop();
+    	Robot.roller.stop();
     }
 
     // Called when another command which requires one or more of the same
