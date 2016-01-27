@@ -28,11 +28,7 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     public DriveTrain() {
     	super();
-    	//frontRight = new CANJaguar(2);
-    	//backRight = new CANJaguar(3);
-    	//backLeft = new CANJaguar(4);
-    	//frontLeft = new CANJaguar(5);
-    	drive = new RobotDrive(frontLeft, frontRight);
+    	drive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
     	
     }
     public void initDefaultCommand() {
