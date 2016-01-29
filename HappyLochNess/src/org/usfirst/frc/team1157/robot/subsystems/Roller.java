@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Roller extends Subsystem {
 
-	CANJaguar motor = RobotMap.rollerMotor;
+	CANJaguar motor;// = RobotMap.rollerMotor;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 

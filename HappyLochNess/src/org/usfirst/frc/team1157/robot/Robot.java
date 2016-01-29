@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team1157.robot;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
@@ -26,12 +28,16 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain = new DriveTrain();
     Command autonomousCommand;
     SendableChooser chooser;
+    Gyro gyro;
 
     /**
      * This function is run when the robot is first started up and should be
+     * 
+     * 
      * used for any initialization code.
      */
     public void robotInit() {
+    	gyro = RobotMap.gyro;
     	
 		oi = new OI();
         chooser = new SendableChooser();
@@ -63,6 +69,7 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	gyro.reset();
         autonomousCommand = (Command) chooser.getSelected();
         //autonomousCommand = new RollerMove(1);
         
@@ -74,6 +81,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	SmartDashboard.putNumber("Gyro", gyro.getAngle());
         Scheduler.getInstance().run();
     }
 

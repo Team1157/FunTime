@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1157.robot;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -10,12 +12,14 @@ import edu.wpi.first.wpilibj.CANJaguar;
  */
 public class RobotMap {
 	
-	public static CANJaguar rollerMotor = new CANJaguar(2);
+	//public static CANJaguar rollerMotor = new CANJaguar(6);
 	
-	public static CANJaguar frontRightMotor = new CANJaguar(3);
-	public static CANJaguar frontLeftMotor = new CANJaguar(4);
-	public static CANJaguar backRightMotor = new CANJaguar(5);
-	public static CANJaguar backLeftMotor = new CANJaguar(6);
+	public static CANJaguar frontRightMotor = new CANJaguar(2);
+	public static CANJaguar frontLeftMotor = new CANJaguar(5);
+	//public static CANJaguar backRightMotor = new CANJaguar(3);
+	//public static CANJaguar backLeftMotor = new CANJaguar(4);
+	
+	public static Gyro gyro = new AnalogGyro(0);
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;

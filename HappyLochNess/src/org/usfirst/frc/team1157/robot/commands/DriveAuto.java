@@ -4,6 +4,7 @@ import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,9 +32,11 @@ public class DriveAuto extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Timer.getMatchTime() - startTime > time) {
+		double curr = Timer.getMatchTime();
+		if (curr - startTime > time) {
 			return true;
 		}
+		SmartDashboard.putNumber("time", curr);
 		return false;
 	}
 
