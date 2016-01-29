@@ -2,6 +2,7 @@
 package org.usfirst.frc.team1157.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     Gyro gyro;
+    AnalogInput pot;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -38,10 +40,11 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	gyro = RobotMap.gyro;
+    	pot = RobotMap.pot;
     	
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Brute Force", new DriveAuto(5,0.5,0.5));
+        chooser.addDefault("Brute Force", new DriveAuto(5, 1, 1));
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
@@ -82,6 +85,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	SmartDashboard.putNumber("Gyro", gyro.getAngle());
+    	SmartDashboard.putNumber("Pot", pot.getValue());
         Scheduler.getInstance().run();
     }
 

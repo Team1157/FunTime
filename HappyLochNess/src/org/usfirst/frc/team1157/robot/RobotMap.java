@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1157.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
@@ -20,6 +21,8 @@ public class RobotMap {
 	public static CANJaguar backLeftMotor = new CANJaguar(4);
 	
 	public static Gyro gyro = new AnalogGyro(0);
+	
+	public static AnalogInput pot = new AnalogInput(1);
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;
