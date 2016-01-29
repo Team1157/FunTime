@@ -17,8 +17,8 @@ public class DriveTrain extends Subsystem {
 	
 	CANJaguar frontLeft = RobotMap.frontLeftMotor;
 	CANJaguar frontRight = RobotMap.frontRightMotor;
-	//CANJaguar backLeft = RobotMap.backLeftMotor;
-	//CANJaguar backRight = RobotMap.backRightMotor;
+	CANJaguar backLeft = RobotMap.backLeftMotor;
+	CANJaguar backRight = RobotMap.backRightMotor;
     //private CANJaguar frontLeft, frontRight, backLeft, backRight;
     
     private RobotDrive drive;
@@ -28,7 +28,7 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     public DriveTrain() {
     	super();
-    	drive = new RobotDrive(frontLeft, frontRight); // backLeft, backRight);
+    	drive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
     	
     }
     public void initDefaultCommand() {

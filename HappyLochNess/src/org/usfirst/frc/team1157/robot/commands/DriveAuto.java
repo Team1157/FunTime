@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveAuto extends Command {
 
-	double startTime, time, leftSpeed, rightSpeed;
+	double startTime, leftSpeed, rightSpeed;
 
 	public DriveAuto(double Itime, double IleftSpeed, double IrightSpeed) {
 		requires(Robot.drivetrain);
-		time = Itime;
+		setTimeout(Itime);
 		leftSpeed = IleftSpeed;
 		rightSpeed = IrightSpeed;
 	}
@@ -32,12 +32,7 @@ public class DriveAuto extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		double curr = Timer.getMatchTime();
-		if (curr - startTime > time) {
-			return true;
-		}
-		SmartDashboard.putNumber("time", curr);
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true

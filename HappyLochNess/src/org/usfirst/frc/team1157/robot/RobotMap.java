@@ -16,8 +16,8 @@ public class RobotMap {
 	
 	public static CANJaguar frontRightMotor = new CANJaguar(2);
 	public static CANJaguar frontLeftMotor = new CANJaguar(5);
-	//public static CANJaguar backRightMotor = new CANJaguar(3);
-	//public static CANJaguar backLeftMotor = new CANJaguar(4);
+	public static CANJaguar backRightMotor = new CANJaguar(3);
+	public static CANJaguar backLeftMotor = new CANJaguar(4);
 	
 	public static Gyro gyro = new AnalogGyro(0);
     // For example to map the left and right motors, you could define the
