@@ -23,6 +23,8 @@ public class RobotMap {
 	public static Gyro gyro = new AnalogGyro(0);
 	
 	public static AnalogInput pot = new AnalogInput(1);
+	
+	public static AnalogInput distanceFinder = new AnalogInput(2);
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;

@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     Gyro gyro;
     AnalogInput pot;
+    AnalogInput distanceFinder;
     int count = 0;
 
     /**
@@ -44,11 +45,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	gyro = RobotMap.gyro;
     	pot = RobotMap.pot;
+    	distanceFinder = RobotMap.distanceFinder;
     	
     	SmartDashboard.putBoolean("Set PID", false);
     	SmartDashboard.putNumber("P", 2);
     	SmartDashboard.putNumber("I", 0);
     	SmartDashboard.putNumber("D", 0);
+    	SmartDashboard.putNumber("Distance", 0);
     	arm.setInputRange(0.005, 4.855);
     	arm.setOutputRange(-1, 1);
     	
@@ -116,6 +119,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
     	SmartDashboard.putNumber("Pot", pot.getValue());
+    	SmartDashboard.putNumber("Distance", distanceFinder.getAverageVoltage());
     	double value = SmartDashboard.getNumber("Setpoint");
     	arm.setSetpoint(value);
         Scheduler.getInstance().run();
