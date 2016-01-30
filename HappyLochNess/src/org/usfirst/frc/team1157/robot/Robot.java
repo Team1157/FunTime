@@ -28,11 +28,12 @@ public class Robot extends IterativeRobot {
 	public static Roller roller;// = new Roller();
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
-	public static Arm arm = new Arm();
+	public static Arm arm = new Arm(2.0, 0.0, 0.0);
     Command autonomousCommand;
     SendableChooser chooser;
     Gyro gyro;
     AnalogInput pot;
+    int count = 0;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -44,9 +45,18 @@ public class Robot extends IterativeRobot {
     	gyro = RobotMap.gyro;
     	pot = RobotMap.pot;
     	
+    	SmartDashboard.putBoolean("Set PID", false);
+    	SmartDashboard.putNumber("P", 2);
+    	SmartDashboard.putNumber("I", 0);
+    	SmartDashboard.putNumber("D", 0);
+    	arm.setInputRange(0.005, 4.855);
+    	arm.setOutputRange(-1, 1);
+    	
+    	SmartDashboard.putNumber("Setpoint", 0);
+    	
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Brute Force", new DriveAuto(5, 1, 1));
+        //chooser.addDefault("Brute Force", new DriveAuto(5, 1, 1));
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
@@ -96,6 +106,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	arm.enable();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
@@ -103,8 +114,17 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
+    	SmartDashboard.putNumber("Pot", pot.getValue());
+    	double value = SmartDashboard.getNumber("Setpoint");
+    	arm.setSetpoint(value);
         Scheduler.getInstance().run();
         
+        if(SmartDashboard.getBoolean("Set PID")) {
+        	setPID();
+        	SmartDashboard.putBoolean("Set PID", false);
+        	
+        }
     }
     
     /**
@@ -112,5 +132,16 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    private void setPID() {
+    	arm.disable();
+    	arm = new Arm(SmartDashboard.getNumber("P"), SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+    	arm.setInputRange(0.005, 4.855);
+    	arm.setOutputRange(-1, 1);
+    	double value = SmartDashboard.getNumber("Setpoint");
+    	arm.setSetpoint(value);
+    	arm.enable();
+    	
     }
 }

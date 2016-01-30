@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 	
-	CANJaguar frontLeft = RobotMap.frontLeftMotor;
-	CANJaguar frontRight = RobotMap.frontRightMotor;
+	//CANJaguar frontLeft = RobotMap.frontLeftMotor;
+	//CANJaguar frontRight = RobotMap.frontRightMotor;
 	CANJaguar backLeft = RobotMap.backLeftMotor;
 	CANJaguar backRight = RobotMap.backRightMotor;
     //private CANJaguar frontLeft, frontRight, backLeft, backRight;
@@ -28,7 +28,7 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     public DriveTrain() {
     	super();
-    	drive = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
+    	drive = new RobotDrive(backLeft, backRight); //frontLeft, frontRight
     	
     }
     public void initDefaultCommand() {
