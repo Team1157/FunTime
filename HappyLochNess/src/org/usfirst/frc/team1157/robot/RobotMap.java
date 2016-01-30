@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  */
 public class RobotMap {
 	
-	//public static CANJaguar rollerMotor = new CANJaguar(6);
+	public static CANJaguar rollerMotor; // = new CANJaguar(6);
+	public static CANJaguar armMotor; //= new CANJaguar(5);
 	
 	public static CANJaguar frontRightMotor = new CANJaguar(2);
 	public static CANJaguar frontLeftMotor = new CANJaguar(5);

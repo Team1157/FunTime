@@ -15,11 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 	
-	//CANJaguar frontLeft = RobotMap.frontLeftMotor;
-	//CANJaguar frontRight = RobotMap.frontRightMotor;
+	CANJaguar frontLeft = RobotMap.frontLeftMotor;
+	CANJaguar frontRight = RobotMap.frontRightMotor;
 	CANJaguar backLeft = RobotMap.backLeftMotor;
 	CANJaguar backRight = RobotMap.backRightMotor;
-    //private CANJaguar frontLeft, frontRight, backLeft, backRight;
     
     private RobotDrive drive;
     private Encoder leftEncoder, rightEncoder;
@@ -28,7 +27,7 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     public DriveTrain() {
     	super();
-    	drive = new RobotDrive(backLeft, backRight); //frontLeft, frontRight
+    	drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
     	
     }
     public void initDefaultCommand() {
@@ -41,9 +40,9 @@ public class DriveTrain extends Subsystem {
     }
     public void drive(Joystick joy) {
     	if (joy.getTrigger()) {
-    		drive(-joy.getY(), joy.getZ());
+    		drive(joy.getY(), joy.getZ()*0.75);
     	} else {
-    		drive(joy.getY(), -joy.getZ());
+    		drive(-joy.getY(), -joy.getZ()*0.75);
     	}
     }
 }
