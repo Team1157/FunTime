@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
+import org.usfirst.frc.team1157.robot.subsystems.Arm;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Roller roller;// = new Roller();
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
+	public static Arm arm = new Arm();
     Command autonomousCommand;
     SendableChooser chooser;
     Gyro gyro;
