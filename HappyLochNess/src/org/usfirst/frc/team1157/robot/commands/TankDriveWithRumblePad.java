@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TankDriveWithJoystick extends Command {
+public class TankDriveWithRumblePad extends Command {
 
-    public TankDriveWithJoystick() {
+    public TankDriveWithRumblePad() {
     	requires(Robot.drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,7 +21,7 @@ public class TankDriveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.drive(Robot.oi.getJoystick(0));
+    	Robot.drivetrain.driveLR(Robot.oi.getJoystick(2));
     }
 
     // Make this return true when this Command no longer needs to run execute()

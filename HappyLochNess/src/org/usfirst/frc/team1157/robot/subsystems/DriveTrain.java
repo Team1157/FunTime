@@ -35,15 +35,22 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void drive(double speed, double rotate) {
+    public void driveLR(double left, double right) {
+    	drive.tankDrive(left, right);
+    }
+    public void driveArcade(double speed, double rotate) {
     	drive.arcadeDrive(speed, rotate, true);
     }
     public void drive(Joystick joy) {
     	if (joy.getTrigger()) {
-    		drive(joy.getY(), joy.getZ()*0.75);
+    		driveArcade(joy.getY(), joy.getZ()*0.75);
     	} else {
-    		drive(-joy.getY(), -joy.getZ()*0.75);
+    		driveArcade(-joy.getY(), -joy.getZ()*0.75);
     	}
     }
+	public void driveLR(Joystick joy) {
+		driveLR(joy.getY(), 0);
+		
+	}
 }
 
