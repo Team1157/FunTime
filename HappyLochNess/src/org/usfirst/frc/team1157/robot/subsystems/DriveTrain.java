@@ -49,7 +49,7 @@ public class DriveTrain extends Subsystem {
     	}
     }
 	public void driveLR(Joystick joy) {
-		driveLR(joy.getY(), 0);
+		driveLR(joy.getY(), joy.getThrottle());  //TODO may need to change this
 		
 	}
 }
