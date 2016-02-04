@@ -22,12 +22,12 @@ public class DriveAuto extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.drivetrain.driveLR(leftSpeed, rightSpeed, false);
+		Robot.drivetrain.driveTank(leftSpeed, rightSpeed, false);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.driveLR(leftSpeed, rightSpeed, false);
+		Robot.drivetrain.driveTank(leftSpeed, rightSpeed, false);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class DriveAuto extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.drivetrain.driveLR(0, 0, false);
+		Robot.drivetrain.driveTank(0, 0, false);
 	}
 
 	// Called when another command which requires one or more of the same
