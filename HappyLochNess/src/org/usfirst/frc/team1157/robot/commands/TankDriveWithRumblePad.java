@@ -31,7 +31,7 @@ public class TankDriveWithRumblePad extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.driveLR(0, 0);
+    	Robot.drivetrain.driveLR(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same

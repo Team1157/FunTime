@@ -35,8 +35,8 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void driveLR(double left, double right) {
-    	drive.tankDrive(left, right);
+    public void driveLR(double left, double right, boolean sInput) {
+    	drive.tankDrive(left, right, sInput);
     }
     public void driveArcade(double speed, double rotate) {
     	drive.arcadeDrive(speed, rotate, true);
@@ -49,7 +49,11 @@ public class DriveTrain extends Subsystem {
     	}
     }
 	public void driveLR(Joystick joy) {
-		driveLR(joy.getY(), joy.getThrottle());  //TODO may need to change this
+		if (joy.getRawButton(6)) {
+			driveLR(joy.getThrottle(), joy.getY(), true);
+		} else {
+			driveLR(joy.getY(), joy.getThrottle(), true);
+		}
 		
 	}
 }
