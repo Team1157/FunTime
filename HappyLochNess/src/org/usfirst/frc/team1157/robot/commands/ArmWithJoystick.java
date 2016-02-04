@@ -21,7 +21,7 @@ public class ArmWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.armwopid.armControl(Robot.oi.getJoystick(1));
+    	Robot.armwopid.armControl(Robot.oi.getJoystick(false));
     }
 
     // Make this return true when this Command no longer needs to run execute()

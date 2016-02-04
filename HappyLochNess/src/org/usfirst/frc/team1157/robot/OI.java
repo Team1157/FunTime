@@ -10,18 +10,16 @@ import edu.wpi.first.wpilibj.buttons.Button;
 public class OI {
 	private Joystick joy = new Joystick(0);
 	private Joystick joy2 = new Joystick(1);
-	private Joystick joy3 = new Joystick(2);
 	public OI() {
 		
 	}
 	
-	public Joystick getJoystick(int joyNumber) {
-		if(joyNumber == 0) {
+	public Joystick getJoystick(boolean driveJoy) {
+		
+		if(driveJoy) {
 			return joy;
-		} else if(joyNumber == 1){
-			return joy2;
 		} else {
-			return joy3;
+			return joy2;
 		}
 	}
     //// CREATING BUTTONS
