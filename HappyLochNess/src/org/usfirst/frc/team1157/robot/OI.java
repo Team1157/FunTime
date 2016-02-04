@@ -15,7 +15,6 @@ public class OI {
 	}
 	
 	public Joystick getJoystick(boolean driveJoy) {
-		
 		if(driveJoy) {
 			return joy;
 		} else {

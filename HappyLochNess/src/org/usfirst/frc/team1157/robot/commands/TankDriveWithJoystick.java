@@ -3,6 +3,7 @@ package org.usfirst.frc.team1157.robot.commands;
 import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,6 +18,12 @@ public class TankDriveWithJoystick extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	SmartDashboard.putString("name", Robot.oi.getJoystick(true).getName());
+    	if (Robot.oi.getJoystick(true).getIsXbox()) {
+    		SmartDashboard.putBoolean("Xbox", true);
+    	} else {
+    		SmartDashboard.putBoolean("Xbox", false);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

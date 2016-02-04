@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
     	
 		oi = new OI();
         chooser = new SendableChooser();
-        //chooser.addDefault("Brute Force", new DriveAuto(5, 1, 1));
+        chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, 0.5));
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
