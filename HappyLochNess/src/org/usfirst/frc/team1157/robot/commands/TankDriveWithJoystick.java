@@ -18,12 +18,6 @@ public class TankDriveWithJoystick extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("name", Robot.oi.getJoystick(true).getName());
-    	if (Robot.oi.getJoystick(true).getIsXbox()) {
-    		SmartDashboard.putBoolean("Xbox", true);
-    	} else {
-    		SmartDashboard.putBoolean("Xbox", false);
-    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

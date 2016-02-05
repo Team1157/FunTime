@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1157.robot.subsystems;
 
+import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.commands.TankDriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CANJaguar;
@@ -13,10 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrain extends Subsystem {
 	
-	CANJaguar frontRight = new CANJaguar(2);
-	CANJaguar frontLeft = new CANJaguar(5);
-	CANJaguar backRight = new CANJaguar(3);
-	CANJaguar backLeft = new CANJaguar(4);
+	CANJaguar frontRight = new CANJaguar(RobotMap.frontRightMotor);
+	CANJaguar frontLeft = new CANJaguar(RobotMap.frontLeftMotor);
+	CANJaguar backRight = new CANJaguar(RobotMap.backRightMotor);
+	CANJaguar backLeft = new CANJaguar(RobotMap.backLeftMotor);
 	
 	private RobotDrive drive;
 

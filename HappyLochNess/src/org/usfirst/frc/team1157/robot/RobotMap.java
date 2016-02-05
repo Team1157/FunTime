@@ -22,6 +22,12 @@ public class RobotMap {
 	public static AnalogInput pot = new AnalogInput(1);
 	
 	public static AnalogInput distanceFinder = new AnalogInput(2);
+	
+	public static int frontRightMotor = 2;
+	public static int backRightMotor = 3;
+	public static int backLeftMotor = 4;
+	public static int frontLeftMotor = 5;
+	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;
