@@ -1,12 +1,9 @@
 package org.usfirst.frc.team1157.robot.subsystems;
 
-import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.commands.TankDriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,14 +12,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveTrain extends Subsystem {
-
-	CANJaguar frontLeft = RobotMap.frontLeftMotor;
-	CANJaguar frontRight = RobotMap.frontRightMotor;
-	CANJaguar backLeft = RobotMap.backLeftMotor;
-	CANJaguar backRight = RobotMap.backRightMotor;
-
+	
+	CANJaguar frontRight = new CANJaguar(2);
+	CANJaguar frontLeft = new CANJaguar(5);
+	CANJaguar backRight = new CANJaguar(3);
+	CANJaguar backLeft = new CANJaguar(4);
+	
 	private RobotDrive drive;
-	private Encoder leftEncoder, rightEncoder;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
