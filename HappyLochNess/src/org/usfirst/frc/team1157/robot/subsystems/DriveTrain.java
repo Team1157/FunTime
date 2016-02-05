@@ -49,11 +49,11 @@ public class DriveTrain extends Subsystem {
 	public void driveJoy(Joystick joy) {
 		if (joy.getName().equals("Logitech Extreme 3D")) {
 			if (joy.getTrigger()) {
-				driveArcade(joy.getY(), joy.getZ() * 0.75);
+				driveArcade(joy.getY(), -joy.getZ() * 0.75);
 			} else {
-				driveArcade(-joy.getY(), joy.getZ() * 0.75);
+				driveArcade(-joy.getY(), -joy.getZ() * 0.75);
 			}
-		} else if (joy.getName().equals("Logitech rumblepad")) {
+		} else if (joy.getName().equals("Logitech RumblePad 2 USB")) {
 			if (joy.getRawButton(6)) {
 				driveTank(joy.getThrottle(), joy.getY(), true);
 			} else {
