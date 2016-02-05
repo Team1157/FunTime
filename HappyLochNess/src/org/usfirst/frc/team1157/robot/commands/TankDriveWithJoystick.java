@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TankDriveWithJoystick extends Command {
 
     public TankDriveWithJoystick() {
-    	requires(Robot.drivetrain);
-    	//requires(Robot.drivetraintalon);
+    	//requires(Robot.drivetrain);
+    	requires(Robot.drivetraintalon);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,8 +23,8 @@ public class TankDriveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.driveJoy(Robot.oi.getJoystick(true));
-    	//Robot.drivetraintalon.driveJoy(Robot.oi.getJoystick(true));
+    	//Robot.drivetrain.driveJoy(Robot.oi.getJoystick(true));
+    	Robot.drivetraintalon.driveJoy(Robot.oi.getJoystick(true));
     }
 
     // Make this return true when this Command no longer needs to run execute()
