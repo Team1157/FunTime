@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Arm extends PIDSubsystem {
     
 	AnalogInput pot = RobotMap.pot;
-	CANJaguar motor = RobotMap.frontRightMotor;
+	CANJaguar motor = RobotMap.armMotor;
 	
 	public Arm(double p, double i, double d) {
 		super("Arm", p, i, d);
