@@ -13,6 +13,7 @@ import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.subsystems.Arm;
 import org.usfirst.frc.team1157.robot.subsystems.ArmWithoutPID;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team1157.robot.subsystems.DriveTrainTalon;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static Roller roller;// = new Roller();
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
+	public static DriveTrainTalon drivetraintalon = new DriveTrainTalon();
 	public static Arm arm; // = new Arm(2.0, 0.0, 0.0);
 	public static ArmWithoutPID armwopid; // = new ArmWithoutPID();
     Command autonomousCommand;
