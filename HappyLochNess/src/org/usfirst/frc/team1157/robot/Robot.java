@@ -29,11 +29,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static Roller roller;// = new Roller();
+	public static Roller roller = new Roller();
 	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainTalon drivetraintalon;// = new DriveTrainTalon();
-	public static Arm arm = new Arm(2.0, 0.0, 0.0);
+	public static Arm arm; // = new Arm(2.0, 0.0, 0.0);
 	public static ArmWithoutPID armwopid; // = new ArmWithoutPID();
     Command autonomousCommand;
     SendableChooser chooser;
@@ -60,8 +60,8 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("KP", 0.03);
     	SmartDashboard.putNumber("Tol", 3);
     	SmartDashboard.putNumber("Distance", 0);
-    	arm.setInputRange(0.005, 4.855);
-    	arm.setOutputRange(-1, 1);
+    	//arm.setInputRange(0.005, 4.855);
+    	//arm.setOutputRange(-1, 1);
     	
     	SmartDashboard.putNumber("Setpoint", 0);
     	
@@ -117,7 +117,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-    	arm.enable();
+    	//arm.enable();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
@@ -129,7 +129,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Pot", pot.getValue());
     	SmartDashboard.putNumber("Distance (inches):", (distanceFinder.getAverageVoltage()*1000.0)/9.8);
     	double value = SmartDashboard.getNumber("Setpoint");
-    	arm.setSetpoint(value);
+    	//arm.setSetpoint(value);
         Scheduler.getInstance().run();
         
         if(SmartDashboard.getBoolean("Set PID")) {
@@ -147,13 +147,13 @@ public class Robot extends IterativeRobot {
     }
     
     private void setPID() {
-    	arm.disable();
-    	arm = new Arm(SmartDashboard.getNumber("P"), SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
-    	arm.setInputRange(0.005, 4.855);
-    	arm.setOutputRange(-1, 1);
-    	double value = SmartDashboard.getNumber("Setpoint");
-    	arm.setSetpoint(value);
-    	arm.enable();
+//    	arm.disable();
+//    	arm = new Arm(SmartDashboard.getNumber("P"), SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+//    	arm.setInputRange(0.005, 4.855);
+//    	arm.setOutputRange(-1, 1);
+//    	double value = SmartDashboard.getNumber("Setpoint");
+//    	arm.setSetpoint(value);
+//    	arm.enable();
     	
     }
 }

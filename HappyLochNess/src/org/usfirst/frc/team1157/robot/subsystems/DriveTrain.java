@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrain extends Subsystem {
 	
-	CANJaguar frontRight = new CANJaguar(RobotMap.frontRightMotor);
-	CANJaguar frontLeft = new CANJaguar(RobotMap.frontLeftMotor);
-	CANJaguar backRight = new CANJaguar(RobotMap.backRightMotor);
-	CANJaguar backLeft = new CANJaguar(RobotMap.backLeftMotor);
+	CANJaguar frontRight;
+	CANJaguar frontLeft;
+	CANJaguar backRight;
+	CANJaguar backLeft;
 	
 	private RobotDrive drive;
 
@@ -25,7 +25,13 @@ public class DriveTrain extends Subsystem {
 	// here. Call these from Commands.
 	public DriveTrain() {
 		super();
+		frontRight = new CANJaguar(RobotMap.frontRightMotor);
+		frontLeft = new CANJaguar(RobotMap.frontLeftMotor);
+		backRight = new CANJaguar(RobotMap.backRightMotor);
+		backLeft = new CANJaguar(RobotMap.backLeftMotor);
+		
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		
 
 	}
 
