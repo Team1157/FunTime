@@ -4,6 +4,7 @@ import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -11,23 +12,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveAuto extends Command {
 
-	double startTime, leftSpeed, rightSpeed;
+	double startTime, power, angle;
+	double Kp = 0.03;
+	Gyro gyro;
 
-	public DriveAuto(double Itime, double IleftSpeed, double IrightSpeed) {
+	public DriveAuto(double Itime, double Ipower, Gyro Igyro) {
 		requires(Robot.drivetrain);
 		setTimeout(Itime);
-		leftSpeed = IleftSpeed;
-		rightSpeed = IrightSpeed;
+		power = Ipower;
+		gyro = Igyro;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.drivetrain.driveTank(leftSpeed, rightSpeed, false);
+		gyro.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.driveTank(leftSpeed, rightSpeed, false);
+		angle = gyro.getAngle();
+		Robot.drivetrain.driveArcade(power, -angle*Kp);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -43,5 +47,6 @@ public class DriveAuto extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }

@@ -3,33 +3,46 @@ package org.usfirst.frc.team1157.robot.commands;
 import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class TankDriveWithJoystick extends Command {
+public class TurnAuto extends Command {
+	
+	Gyro gyro;
+	double toAngle, angle;
+	double Kp = 0.03;
+	double tolerance = 3;
 
-    public TankDriveWithJoystick() {
-    	requires(Robot.drivetrain);
-    	//requires(Robot.drivetraintalon);
+    public TurnAuto(double Iangle, Gyro Igyro) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.drivetrain);
+        gyro = Igyro;
+        toAngle = Iangle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	gyro.reset();
+    	tolerance = SmartDashboard.getNumber("Tol");
+        Kp = SmartDashboard.getNumber("KP");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.driveJoy(Robot.oi.getJoystick(true));
-    	//Robot.drivetraintalon.driveJoy(Robot.oi.getJoystick(true));
+    	double dif = gyro.getAngle() - toAngle;
+    	Robot.drivetrain.driveArcade(0, -dif*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if(Math.abs(gyro.getAngle() - toAngle) < tolerance) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true

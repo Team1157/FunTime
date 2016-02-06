@@ -3,6 +3,7 @@ package org.usfirst.frc.team1157.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
+import org.usfirst.frc.team1157.robot.commands.TurnAuto;
 import org.usfirst.frc.team1157.robot.subsystems.Arm;
 import org.usfirst.frc.team1157.robot.subsystems.ArmWithoutPID;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
@@ -29,7 +31,7 @@ public class Robot extends IterativeRobot {
 
 	public static Roller roller;// = new Roller();
 	public static OI oi;
-	public static DriveTrain drivetrain;// = new DriveTrain();
+	public static DriveTrain drivetrain = new DriveTrain();
 	public static DriveTrainTalon drivetraintalon;// = new DriveTrainTalon();
 	public static Arm arm = new Arm(2.0, 0.0, 0.0);
 	public static ArmWithoutPID armwopid; // = new ArmWithoutPID();
@@ -55,16 +57,18 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("P", 2);
     	SmartDashboard.putNumber("I", 0);
     	SmartDashboard.putNumber("D", 0);
+    	SmartDashboard.putNumber("KP", 0.03);
+    	SmartDashboard.putNumber("Tol", 3);
     	SmartDashboard.putNumber("Distance", 0);
-    	//arm.setInputRange(0.005, 4.855);
-    	//arm.setOutputRange(-1, 1);
+    	arm.setInputRange(0.005, 4.855);
+    	arm.setOutputRange(-1, 1);
     	
     	SmartDashboard.putNumber("Setpoint", 0);
     	
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, 0.5));
-        //chooser.addObject("My Auto", new MyAutoCommand());
+        chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, gyro));
+        chooser.addObject("turn 90", new TurnAuto(90, gyro));
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -113,7 +117,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-    	//arm.enable();
+    	arm.enable();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
@@ -125,7 +129,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Pot", pot.getValue());
     	SmartDashboard.putNumber("Distance (inches):", (distanceFinder.getAverageVoltage()*1000.0)/9.8);
     	double value = SmartDashboard.getNumber("Setpoint");
-    	//arm.setSetpoint(value);
+    	arm.setSetpoint(value);
         Scheduler.getInstance().run();
         
         if(SmartDashboard.getBoolean("Set PID")) {
@@ -143,13 +147,13 @@ public class Robot extends IterativeRobot {
     }
     
     private void setPID() {
-//    	arm.disable();
-//    	arm = new Arm(SmartDashboard.getNumber("P"), SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
-//    	arm.setInputRange(0.005, 4.855);
-//    	arm.setOutputRange(-1, 1);
-//    	double value = SmartDashboard.getNumber("Setpoint");
-//    	arm.setSetpoint(value);
-//    	arm.enable();
+    	arm.disable();
+    	arm = new Arm(SmartDashboard.getNumber("P"), SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+    	arm.setInputRange(0.005, 4.855);
+    	arm.setOutputRange(-1, 1);
+    	double value = SmartDashboard.getNumber("Setpoint");
+    	arm.setSetpoint(value);
+    	arm.enable();
     	
     }
 }
