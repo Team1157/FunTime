@@ -29,9 +29,11 @@ public class Roller extends Subsystem {
 
 	public void rollerControl(Joystick joy) {
 		if (joy.getRawButton(6)) {
-			motor.set(map(-1, 1, 0, 1, joy.getZ()));
-		} else if (joy.getRawButton(7)) {
 			motor.set(-map(-1, 1, 0, 1, joy.getZ()));
+		} else if (joy.getRawButton(7)) {
+			motor.set(map(-1, 1, 0, 1, joy.getZ()));
+		} else {
+			stop();
 		}
 	}
 

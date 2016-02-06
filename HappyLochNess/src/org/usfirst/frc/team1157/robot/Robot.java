@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.commands.TurnAuto;
+import org.usfirst.frc.team1157.robot.commands.overAndBack;
 import org.usfirst.frc.team1157.robot.subsystems.Arm;
 import org.usfirst.frc.team1157.robot.subsystems.ArmWithoutPID;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
@@ -67,7 +68,8 @@ public class Robot extends IterativeRobot {
     	
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, gyro));
+        chooser.addObject("back and forth", new overAndBack(gyro));
+        chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro));
         chooser.addObject("turn 90", new TurnAuto(90, gyro));
         SmartDashboard.putData("Auto mode", chooser);
     }
