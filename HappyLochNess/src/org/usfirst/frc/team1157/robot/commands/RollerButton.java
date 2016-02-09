@@ -7,13 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TankDriveWithJoystick extends Command {
+public class RollerButton extends Command {
 
-    public TankDriveWithJoystick() {
-    	requires(Robot.drivetrain);
-    	//requires(Robot.drivetraintalon);
+	double speed;
+	
+    public RollerButton(double Ispeed) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	requires(Robot.roller);
+    	speed = Ispeed;
     }
 
     // Called just before this Command runs the first time
@@ -22,8 +23,7 @@ public class TankDriveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.driveJoy(Robot.oi.getJoystick(true));
-    	//Robot.drivetraintalon.driveJoy(Robot.oi.getJoystick(true));
+    	Robot.roller.speed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +33,7 @@ public class TankDriveWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.driveTank(0, 0, false);
+    	Robot.roller.stop();
     }
 
     // Called when another command which requires one or more of the same
