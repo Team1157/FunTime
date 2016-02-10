@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1157.robot;
 
+import org.usfirst.frc.team1157.robot.commands.RollerButton;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -11,46 +13,56 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	private Joystick joy = new Joystick(0);
 	private Joystick joy2 = new Joystick(1);
+
 	public OI() {
 		
+		Button J2B11 = new JoystickButton(joy2, 11);
+		Button J2B10 = new JoystickButton(joy2, 10);
+
+		J2B10.whileHeld(new RollerButton(0.25));
+		J2B11.whileHeld(new RollerButton(-1));
 	}
-	
+
 	public Joystick getJoystick(boolean driveJoy) {
-		if(driveJoy) {
+		if (driveJoy) {
 			return joy;
 		} else {
 			return joy2;
 		}
 	}
-	
-	Button button = new JoystickButton(joy2, 11);
-	Button J2B10 = new JoystickButton(joy2, 10);
-	
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-}
 
+	public double map(double oldMin, double oldMax, double newMin, double newMax, double oldValue) {
+		double oldRange = (oldMax - oldMin);
+		double newRange = (newMax - newMin);
+		double newValue = (((oldValue - oldMin) * newRange) / oldRange) + newMin;
+		return newValue;
+	}
+
+	//// CREATING BUTTONS
+	// One type of button is a joystick button which is any button on a
+	//// joystick.
+	// You create one by telling it which joystick it's on and which button
+	// number it is.
+	// Joystick stick = new Joystick(port);
+	// Button button = new JoystickButton(stick, buttonNumber);
+
+	// There are a few additional built in buttons you can use. Additionally,
+	// by subclassing Button you can create custom triggers and bind those to
+	// commands the same as any other Button.
+
+	//// TRIGGERING COMMANDS WITH BUTTONS
+	// Once you have a button, it's trivial to bind it to a button in one of
+	// three ways:
+
+	// Start the command when the button is pressed and let it run the command
+	// until it is finished as determined by it's isFinished method.
+	// button.whenPressed(new ExampleCommand());
+
+	// Run the command while the button is being held down and interrupt it once
+	// the button is released.
+	// button.whileHeld(new ExampleCommand());
+
+	// Start the command when the button is released and let it run the command
+	// until it is finished as determined by it's isFinished method.
+	// button.whenReleased(new ExampleCommand());
+}

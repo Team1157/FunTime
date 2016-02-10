@@ -54,11 +54,15 @@ public class DriveTrain extends Subsystem {
 			if (joy.getTrigger()) {
 				driveArcade(joy.getY(), -joy.getZ() * 0.75);
 			} else {
-				driveArcade(-joy.getY(), -joy.getZ() * 0.75);
+				if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
+					driveArcade(0, -joy.getZ());
+				} else {
+					driveArcade(-joy.getY(), -joy.getZ());
+				}
 			}
 		} else if (joy.getName().equals("Logitech RumblePad 2 USB")) {
 			if (joy.getRawButton(5)) {
-				driveArcade(-joy.getThrottle(), joy.getX());
+				driveArcade(-joy.getThrottle(), -joy.getX());
 			} else if (joy.getRawButton(6)) {
 				driveTank(joy.getThrottle(), joy.getY(), true);
 			} else {

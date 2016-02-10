@@ -1,11 +1,8 @@
 package org.usfirst.frc.team1157.robot.subsystems;
 
 import org.usfirst.frc.team1157.robot.RobotMap;
-import org.usfirst.frc.team1157.robot.commands.RollerWithJoystick;
 
-import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -24,17 +21,7 @@ public class Roller extends Subsystem {
 		motor.set(0.0);
 		// Set the default command for a subsystem here.
 
-		setDefaultCommand(new RollerWithJoystick());
-	}
-
-	public void rollerControl(Joystick joy) {
-		if (joy.getRawButton(6)) {
-			motor.set(-map(-1, 1, 0, 1, -joy.getZ()));
-		} else if (joy.getRawButton(7)) {
-			motor.set(map(-1, 1, 0, 1, -joy.getZ()));
-		} else {
-			stop();
-		}
+		//setDefaultCommand(new RollerWithJoystick());
 	}
 
 	public boolean speed(double speed) {
