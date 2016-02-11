@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.commands.TurnAuto;
+import org.usfirst.frc.team1157.robot.commands.distanceTurnAndShoot;
 import org.usfirst.frc.team1157.robot.commands.overAndBack;
 import org.usfirst.frc.team1157.robot.subsystems.Arm;
 import org.usfirst.frc.team1157.robot.subsystems.ArmWithoutPID;
@@ -71,6 +72,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("back and forth", new overAndBack(gyro));
         chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro));
         chooser.addObject("turn 90", new TurnAuto(90, gyro));
+        chooser.addObject("find distance, turn and shoot", new distanceTurnAndShoot(gyro, distanceFinder));
         SmartDashboard.putData("Auto mode", chooser);
     }
 	

@@ -2,10 +2,8 @@ package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveAuto extends Command {
 
 	double startTime, power, angle;
-	double Kp = 0.03;
+	double Kp = 0.1;
 	Gyro gyro;
 
 	public DriveAuto(double Itime, double Ipower, Gyro Igyro) {

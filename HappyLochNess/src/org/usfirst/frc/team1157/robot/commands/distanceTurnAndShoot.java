@@ -1,17 +1,19 @@
 package org.usfirst.frc.team1157.robot.commands;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  *
  */
-public class overAndBack extends CommandGroup {
+public class distanceTurnAndShoot extends CommandGroup {
     
-    public  overAndBack(Gyro gyro) {
-    	addSequential(new DriveAuto(4, 0.75, gyro));
-    	addSequential(new TurnAuto(180, gyro));
-    	addSequential(new DriveAuto(4, 0.75, gyro));
+    public  distanceTurnAndShoot(Gyro gyro, AnalogInput distanceFinder) {
+    	addSequential(new DriveAutoDistance(63, 0.75, gyro, distanceFinder));
+    	addSequential(new TurnAuto(-45, gyro));
+    	addSequential(new RollerMove(-1, 2));
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

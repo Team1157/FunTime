@@ -2,43 +2,45 @@ package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class TurnAuto extends Command {
+public class DriveAutoDistance extends Command {
 	
+	double power, angle, distance;
+	double Kp = 0.1;
 	Gyro gyro;
-	double toAngle, angle;
-	double Kp = 0.03;
-	double tolerance = 0.5;
+	AnalogInput distanceFinder;
 
-    public TurnAuto(double Iangle, Gyro Igyro) {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.drivetrain);
-        gyro = Igyro;
-        toAngle = Iangle;
+    public DriveAutoDistance(double Idistance, double Ipower, Gyro Igyro, AnalogInput IdistanceFinder) {
+    	requires(Robot.drivetrain);	
+    	
+    	distance = Idistance;
+    	power = Ipower;
+		gyro = Igyro;
+		distanceFinder = IdistanceFinder;
+    	// Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	gyro.reset();
-    	tolerance = SmartDashboard.getNumber("Tol");
-        Kp = SmartDashboard.getNumber("KP");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double dif = gyro.getAngle() - toAngle;
-    	Robot.drivetrain.driveArcade(0, -dif*Kp);
+    	angle = gyro.getAngle();
+		Robot.drivetrain.driveArcade(power, -angle*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Math.abs(gyro.getAngle() - toAngle) < tolerance) {
+    	if ((distanceFinder.getAverageVoltage()*1000.0)/9.8 <= distance) {
     		return true;
     	} else {
     		return false;

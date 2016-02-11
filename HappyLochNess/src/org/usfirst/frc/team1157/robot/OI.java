@@ -31,13 +31,6 @@ public class OI {
 		}
 	}
 
-	public double map(double oldMin, double oldMax, double newMin, double newMax, double oldValue) {
-		double oldRange = (oldMax - oldMin);
-		double newRange = (newMax - newMin);
-		double newValue = (((oldValue - oldMin) * newRange) / oldRange) + newMin;
-		return newValue;
-	}
-
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
