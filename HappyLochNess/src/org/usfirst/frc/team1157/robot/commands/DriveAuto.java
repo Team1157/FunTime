@@ -13,23 +13,25 @@ public class DriveAuto extends Command {
 	double startTime, power, angle;
 	double Kp = 0.1;
 	Gyro gyro;
+	double targetAngle;
 
-	public DriveAuto(double Itime, double Ipower, Gyro Igyro) {
+	public DriveAuto(double Itime, double Ipower, Gyro Igyro, double ItargetAngle) {
 		requires(Robot.drivetrain);
 		setTimeout(Itime);
 		power = Ipower;
 		gyro = Igyro;
+		targetAngle = ItargetAngle;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		gyro.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		angle = gyro.getAngle();
-		Robot.drivetrain.driveArcade(power, -angle*Kp);
+		double angleDiff = targetAngle-angle;
+		Robot.drivetrain.driveArcade(power, -angleDiff*Kp);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

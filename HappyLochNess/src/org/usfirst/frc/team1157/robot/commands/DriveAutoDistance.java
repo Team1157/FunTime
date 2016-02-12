@@ -5,6 +5,7 @@ import org.usfirst.frc.team1157.robot.Robot;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -15,10 +16,14 @@ public class DriveAutoDistance extends Command {
 	double Kp = 0.1;
 	Gyro gyro;
 	AnalogInput distanceFinder;
+	double smoothedValue = 0;
+	double beta = 0.05;
+	double targetAngle;
 
-    public DriveAutoDistance(double Idistance, double Ipower, Gyro Igyro, AnalogInput IdistanceFinder) {
+    public DriveAutoDistance(double Idistance, double Ipower, Gyro Igyro, AnalogInput IdistanceFinder, double ItargetAngle) {
     	requires(Robot.drivetrain);	
     	
+    	targetAngle = ItargetAngle;
     	distance = Idistance;
     	power = Ipower;
 		gyro = Igyro;
@@ -29,18 +34,20 @@ public class DriveAutoDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	angle = gyro.getAngle();
-		Robot.drivetrain.driveArcade(power, -angle*Kp);
+    	double angleDif = targetAngle - angle;
+		Robot.drivetrain.driveArcade(power, -angleDif*Kp);
+		smoothedValue = smoothedValue - beta*(smoothedValue - (distanceFinder.getAverageVoltage()*1000.0)/9.8);
+    	SmartDashboard.putNumber("Distance (inches):", smoothedValue);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if ((distanceFinder.getAverageVoltage()*1000.0)/9.8 <= distance) {
+    	if (smoothedValue <= distance) {
     		return true;
     	} else {
     		return false;
