@@ -30,8 +30,8 @@ public class DriveAuto extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		angle = gyro.getAngle();
-		double angleDiff = targetAngle-angle;
-		Robot.drivetrain.driveArcade(power, -angleDiff*Kp);
+		double angleDif = targetAngle-angle;
+		Robot.drivetrain.driveArcade(power, -angleDif*Kp);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

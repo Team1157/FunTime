@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 public class overAndBack extends CommandGroup {
     
     public  overAndBack(Gyro gyro) {
-    	addSequential(new DriveAuto(4, 0.75, gyro));
+    	addSequential(new DriveAuto(4, 0.75, gyro, 0));
     	addSequential(new TurnAuto(180, gyro));
-    	addSequential(new DriveAuto(4, 0.75, gyro));
+    	addSequential(new DriveAuto(4, 0.75, gyro, 180));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

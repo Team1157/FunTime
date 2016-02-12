@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 public class distanceTurnAndShoot extends CommandGroup {
     
     public  distanceTurnAndShoot(Gyro gyro, AnalogInput distanceFinder) {
-    	addSequential(new DriveAutoDistance(63, 0.75, gyro, distanceFinder));
+    	addSequential(new DriveAutoDistance(63, 0.75, gyro, distanceFinder, 0));
     	addSequential(new TurnAuto(-45, gyro));
     	addSequential(new RollerMove(-1, 2));
 

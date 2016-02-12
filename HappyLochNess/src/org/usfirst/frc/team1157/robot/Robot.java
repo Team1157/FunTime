@@ -4,6 +4,7 @@ package org.usfirst.frc.team1157.robot;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -55,6 +56,10 @@ public class Robot extends IterativeRobot {
     	pot = RobotMap.pot;
     	distanceFinder = RobotMap.distanceFinder;
     	
+    	CameraServer camera = CameraServer.getInstance();
+    	camera.setQuality(50);
+    	camera.startAutomaticCapture("cam0");
+    	
     	SmartDashboard.putBoolean("Set PID", false);
     	SmartDashboard.putNumber("P", 2);
     	SmartDashboard.putNumber("I", 0);
@@ -70,7 +75,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addObject("back and forth", new overAndBack(gyro));
-        chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro));
+        chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro, 0));
         chooser.addObject("turn 90", new TurnAuto(90, gyro));
         chooser.addObject("find distance, turn and shoot", new distanceTurnAndShoot(gyro, distanceFinder));
         SmartDashboard.putData("Auto mode", chooser);
