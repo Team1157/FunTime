@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
@@ -28,6 +29,8 @@ public class RobotMap {
 	public static int backRightMotor = 3;
 	public static int backLeftMotor = 4;
 	public static int frontLeftMotor = 5;
+	
+	public static CameraServer camera;
 	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.

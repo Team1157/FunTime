@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1157.robot;
 
+import org.usfirst.frc.team1157.robot.commands.CameraToggle;
 import org.usfirst.frc.team1157.robot.commands.RollerButton;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,9 +19,11 @@ public class OI {
 		
 		Button J2B11 = new JoystickButton(joy2, 11);
 		Button J2B10 = new JoystickButton(joy2, 10);
-
+		Button J2B8 = new JoystickButton(joy2, 8);
+		
 		J2B10.whileHeld(new RollerButton(0.25));
 		J2B11.whileHeld(new RollerButton(-1));
+		J2B8.whenPressed(new CameraToggle());
 	}
 
 	public Joystick getJoystick(boolean driveJoy) {
