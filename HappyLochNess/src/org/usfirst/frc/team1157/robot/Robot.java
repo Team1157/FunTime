@@ -49,6 +49,8 @@ public class Robot extends IterativeRobot {
 	AnalogInput distanceFinder;
 	int count = 0;
 	public static CameraFeeds cam = new CameraFeeds();
+	double smoothedValue = 0;
+	double beta = 0.05;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -65,7 +67,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("P", 2);
 		SmartDashboard.putNumber("I", 0);
 		SmartDashboard.putNumber("D", 0);
-		SmartDashboard.putNumber("KP", 0.03);
+		SmartDashboard.putNumber("KP", -0.075);
+		SmartDashboard.putNumber("Beta", 1.0);
 		SmartDashboard.putNumber("Tol", 3);
 		SmartDashboard.putNumber("Distance", 0);
 		// arm.setInputRange(0.005, 4.855);
@@ -76,7 +79,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser = new SendableChooser();
 		chooser.addObject("back and forth", new overAndBack(gyro));
-		chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro, 0));
+		chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro));
 		chooser.addObject("turn 90", new TurnAuto(90, gyro));
 		chooser.addObject("find distance, turn and shoot", new distanceTurnAndShoot(gyro, distanceFinder));
 		SmartDashboard.putData("Auto mode", chooser);
@@ -109,10 +112,9 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		gyro.reset();
+		gyro.calibrate();
 		autonomousCommand = (Command) chooser.getSelected();
 		// autonomousCommand = new RollerMove(1);
-
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -141,9 +143,13 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 		SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
 		SmartDashboard.putNumber("Pot", pot.getValue());
-		SmartDashboard.putNumber("Distance (inches):", (distanceFinder.getAverageVoltage() * 1000.0) / 9.8);
+		double dist = (distanceFinder.getAverageVoltage() * 1000.0) / 9.8;
+		SmartDashboard.putNumber("Distance Raw (inches):", dist);
+		smoothedValue = smoothedValue - beta*(smoothedValue - dist);
+    	SmartDashboard.putNumber("Distance Smoothed (inches):", smoothedValue);
 		double value = SmartDashboard.getNumber("Setpoint");
 		// arm.setSetpoint(value);
 		Scheduler.getInstance().run();

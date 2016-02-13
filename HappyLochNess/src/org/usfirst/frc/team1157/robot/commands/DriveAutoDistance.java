@@ -16,14 +16,12 @@ public class DriveAutoDistance extends Command {
 	double Kp = 0.1;
 	Gyro gyro;
 	AnalogInput distanceFinder;
-	double smoothedValue = 0;
+	double smoothedValue = 100;
 	double beta = 0.05;
-	double targetAngle;
 
-    public DriveAutoDistance(double Idistance, double Ipower, Gyro Igyro, AnalogInput IdistanceFinder, double ItargetAngle) {
+    public DriveAutoDistance(double Idistance, double Ipower, Gyro Igyro, AnalogInput IdistanceFinder) {
     	requires(Robot.drivetrain);	
     	
-    	targetAngle = ItargetAngle;
     	distance = Idistance;
     	power = Ipower;
 		gyro = Igyro;
@@ -34,13 +32,15 @@ public class DriveAutoDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	gyro.reset();
+    	beta = SmartDashboard.getNumber("Beta");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	angle = gyro.getAngle();
-    	double angleDif = targetAngle - angle;
-		Robot.drivetrain.driveArcade(power, -angleDif*Kp);
+    	//double angleDif = targetAngle - angle;
+		Robot.drivetrain.driveArcade(power, -angle*Kp);
 		smoothedValue = smoothedValue - beta*(smoothedValue - (distanceFinder.getAverageVoltage()*1000.0)/9.8);
     	SmartDashboard.putNumber("Distance (inches):", smoothedValue);
     }

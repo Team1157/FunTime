@@ -25,7 +25,7 @@ public class TurnAuto extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//gyro.reset();
+    	gyro.reset();
     	tolerance = SmartDashboard.getNumber("Tol");
         Kp = SmartDashboard.getNumber("KP");
     }
@@ -33,7 +33,7 @@ public class TurnAuto extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double dif = gyro.getAngle() - toAngle;
-    	Robot.drivetrain.driveArcade(0, -dif*Kp);
+    	Robot.drivetrain.driveArcade(0, dif*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
