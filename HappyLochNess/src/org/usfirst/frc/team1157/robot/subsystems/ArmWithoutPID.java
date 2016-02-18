@@ -9,45 +9,43 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ArmWithoutPID extends Subsystem {
 
-	CANTalon motor = RobotMap.armMotor;
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+    CANTalon motor = RobotMap.armMotor;
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
 
-	public void initDefaultCommand(){
-		
-		motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		motor.enableControl();
-		motor.set(0.0);
-		// Set the default command for a subsystem here.
+    public void initDefaultCommand() {
 
-		setDefaultCommand(new ArmWithJoystick());
+	motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+	motor.enableControl();
+	motor.set(0.0);
+	// Set the default command for a subsystem here.
+
+	setDefaultCommand(new ArmWithJoystick());
+    }
+
+    public void armControl(Joystick joy) {
+	motor.set(joy.getY());
+    }
+
+    public boolean speed(double speed) {
+	if (speed < 1 || speed > -1) {
+	    motor.set(speed);
+	} else {
+	    return false;
 	}
+	return true;
+    }
 
-	public void armControl(Joystick joy) {
-		motor.set(joy.getY());
-	}
+    public void forward() {
+	motor.set(1.0);
 
-	public boolean speed(double speed) {
-		if (speed < 1 || speed > -1) {
-			motor.set(speed);
-		} else {
-			return false;
-		}
-		return true;
-	}
+    }
 
-	public void forward() {
-		motor.set(1.0);
+    public void backward() {
+	motor.set(-1.0);
+    }
 
-	}
-
-	public void backward() {
-		motor.set(-1.0);
-	}
-
-	public void stop() {
-		motor.set(0.0);
-	}
+    public void stop() {
+	motor.set(0.0);
+    }
 }
-
-

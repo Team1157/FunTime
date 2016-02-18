@@ -10,49 +10,49 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class TurnAuto extends Command {
-	
-	Gyro gyro;
-	double toAngle, angle;
-	double Kp = 0.03;
-	double tolerance = 0.5;
+
+    Gyro gyro;
+    double toAngle, angle;
+    double Kp = 0.03;
+    double tolerance = 0.5;
 
     public TurnAuto(double Iangle, Gyro Igyro) {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.drivetrain);
-        gyro = Igyro;
-        toAngle = Iangle;
+	// Use requires() here to declare subsystem dependencies
+	requires(Robot.drivetrain);
+	gyro = Igyro;
+	toAngle = Iangle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gyro.reset();
-    	tolerance = SmartDashboard.getNumber("Tol");
-        Kp = SmartDashboard.getNumber("KP");
+	gyro.reset();
+	tolerance = SmartDashboard.getNumber("Tol");
+	Kp = SmartDashboard.getNumber("KP");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double dif = gyro.getAngle() - toAngle;
-    	Robot.drivetrain.driveArcade(0, dif*Kp);
+	double dif = gyro.getAngle() - toAngle;
+	Robot.drivetrain.driveArcade(0, dif * Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Math.abs(gyro.getAngle() - toAngle) < tolerance) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+	if (Math.abs(gyro.getAngle() - toAngle) < tolerance) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.driveTank(0, 0, false);
+	Robot.drivetrain.driveTank(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+	end();
     }
 }

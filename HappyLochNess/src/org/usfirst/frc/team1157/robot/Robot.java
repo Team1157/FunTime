@@ -49,8 +49,6 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This function is run when the robot is first started up and should be
-	 * 
-	 * 
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
@@ -62,6 +60,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("P", 2);
 		SmartDashboard.putNumber("I", 0);
 		SmartDashboard.putNumber("D", 0);
+		
 		SmartDashboard.putNumber("KP", -0.075);
 		SmartDashboard.putNumber("Beta", 1.0);
 		SmartDashboard.putNumber("Tol", 3);
@@ -130,8 +129,8 @@ public class Robot extends IterativeRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		// arm.enable();
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		//if (autonomousCommand != null)
+			//autonomousCommand.cancel();
 	}
 
 	/**

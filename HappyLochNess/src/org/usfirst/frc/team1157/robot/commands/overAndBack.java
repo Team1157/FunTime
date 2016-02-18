@@ -7,26 +7,17 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  *
  */
 public class overAndBack extends CommandGroup {
-    
-    public  overAndBack(Gyro gyro) {
-    	addSequential(new DriveAuto(4, 0.75, gyro));
-    	addSequential(new TurnAuto(180, gyro));
-    	addSequential(new DriveAuto(4, 0.75, gyro));
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+    public overAndBack(Gyro gyro) {
+	addSequential(new DriveAuto(4, 0.75, gyro));
+	addSequential(new TurnAuto(180, gyro));
+	addSequential(new DriveAuto(4, 0.75, gyro));
 
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+	// Add Commands here:
+	// addSequential();
+	// To run multiple commands at the same time:
+	// addParallel()
+	// A command group will require all of the subsystems that each member
+	// would require.
     }
 }

@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ArmWithJoystick extends Command {
 
     public ArmWithJoystick() {
-    	requires(Robot.armwopid);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	requires(Robot.armwopid);
+	// Use requires() here to declare subsystem dependencies
+	// eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -21,22 +21,22 @@ public class ArmWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.armwopid.armControl(Robot.oi.getJoystick(false));
+	Robot.armwopid.armControl(Robot.oi.getJoystick(false));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.armwopid.stop();
+	Robot.armwopid.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+	end();
     }
 }

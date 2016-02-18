@@ -9,19 +9,18 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class CameraToggle extends Command {
-	
-	CameraFeeds camera;
 
-	
+    CameraFeeds camera;
+
     public CameraToggle() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.cam);
-    	camera = Robot.cam;
+	// Use requires() here to declare subsystem dependencies
+	requires(Robot.cam);
+	camera = Robot.cam;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	camera.changeCam();
+	camera.changeCam();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +29,7 @@ public class CameraToggle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+	return true;
     }
 
     // Called once after isFinished returns true
@@ -40,5 +39,6 @@ public class CameraToggle extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+	end();
     }
 }

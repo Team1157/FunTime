@@ -10,42 +10,42 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  */
 public class DriveAuto extends Command {
 
-	double startTime, power, angle;
-	double Kp = 0.1;
-	Gyro gyro;
-	double targetAngle;
+    double startTime, power, angle;
+    double Kp = 0.1;
+    Gyro gyro;
+    double targetAngle;
 
-	public DriveAuto(double Itime, double Ipower, Gyro Igyro) {
-		requires(Robot.drivetrain);
-		setTimeout(Itime);
-		power = Ipower;
-		gyro = Igyro;
-	}
+    public DriveAuto(double Itime, double Ipower, Gyro Igyro) {
+	requires(Robot.drivetrain);
+	setTimeout(Itime);
+	power = Ipower;
+	gyro = Igyro;
+    }
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		gyro.reset();
-	}
+    // Called just before this Command runs the first time
+    protected void initialize() {
+	gyro.reset();
+    }
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		angle = gyro.getAngle();
-		Robot.drivetrain.driveArcade(power, -angle*Kp);
-	}
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+	angle = gyro.getAngle();
+	Robot.drivetrain.driveArcade(power, -angle * Kp);
+    }
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return isTimedOut();
-	}
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+	return isTimedOut();
+    }
 
-	// Called once after isFinished returns true
-	protected void end() {
-		Robot.drivetrain.driveTank(0, 0, false);
-	}
+    // Called once after isFinished returns true
+    protected void end() {
+	Robot.drivetrain.driveTank(0, 0, false);
+    }
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+	end();
+    }
 }
