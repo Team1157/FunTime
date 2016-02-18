@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
-import org.usfirst.frc.team1157.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.command.Command;
 

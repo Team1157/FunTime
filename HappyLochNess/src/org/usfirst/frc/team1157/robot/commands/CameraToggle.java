@@ -1,10 +1,8 @@
 package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
-import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.subsystems.CameraFeeds;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

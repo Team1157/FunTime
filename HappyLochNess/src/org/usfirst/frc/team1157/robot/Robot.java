@@ -1,10 +1,7 @@
 
 package org.usfirst.frc.team1157.robot;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,8 +18,6 @@ import org.usfirst.frc.team1157.robot.subsystems.CameraFeeds;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrainTalon;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
-
-import com.ni.vision.NIVision;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -76,7 +71,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Setpoint", 0);
 
-		oi = new OI();
+		oi = new OI(gyro);
 		chooser = new SendableChooser();
 		chooser.addObject("back and forth", new overAndBack(gyro));
 		chooser.addDefault("Brute Force", new DriveAuto(5, 0.5, gyro));

@@ -20,7 +20,6 @@ public class Roller extends Subsystem {
 		motor.enableControl();
 		motor.set(0.0);
 		// Set the default command for a subsystem here.
-
 		//setDefaultCommand(new RollerWithJoystick());
 	}
 
