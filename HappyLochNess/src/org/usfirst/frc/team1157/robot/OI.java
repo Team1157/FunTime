@@ -1,11 +1,13 @@
 package org.usfirst.frc.team1157.robot;
 
 import org.usfirst.frc.team1157.robot.commands.CameraToggle;
+import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.commands.RollerButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,12 +17,14 @@ public class OI {
 	private Joystick joy = new Joystick(0);
 	private Joystick joy2 = new Joystick(1);
 
-	public OI() {
-		
+	public OI(Gyro gyro) {
+
+		Button J1B10 = new JoystickButton(joy, 10);
 		Button J2B11 = new JoystickButton(joy2, 11);
 		Button J2B10 = new JoystickButton(joy2, 10);
 		Button J2B8 = new JoystickButton(joy2, 8);
-		
+
+		J1B10.whenPressed(new DriveAuto(3, 0.75, gyro));
 		J2B10.whileHeld(new RollerButton(0.25));
 		J2B11.whileHeld(new RollerButton(-1));
 		J2B8.whenPressed(new CameraToggle());

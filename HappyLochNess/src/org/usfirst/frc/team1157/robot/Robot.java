@@ -151,7 +151,7 @@ public class Robot extends IterativeRobot {
 		smoothedValue = smoothedValue - beta*(smoothedValue - dist);
     	SmartDashboard.putNumber("Distance Smoothed (inches):", smoothedValue);
 		double value = SmartDashboard.getNumber("Setpoint");
-		// arm.setSetpoint(value);
+		arm.setSetpoint(value);
 		Scheduler.getInstance().run();
 
 		if (SmartDashboard.getBoolean("Set PID")) {
@@ -169,14 +169,14 @@ public class Robot extends IterativeRobot {
 	}
 
 	private void setPID() {
-		// arm.disable();
-		// arm = new Arm(SmartDashboard.getNumber("P"),
-		// SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
-		// arm.setInputRange(0.005, 4.855);
-		// arm.setOutputRange(-1, 1);
-		// double value = SmartDashboard.getNumber("Setpoint");
-		// arm.setSetpoint(value);
-		// arm.enable();
+		 arm.disable();
+		 arm = new Arm(SmartDashboard.getNumber("P"),
+		 SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+		 arm.setInputRange(0.005, 4.855);
+		 arm.setOutputRange(-1, 1);
+		 double value = SmartDashboard.getNumber("Setpoint");
+		 arm.setSetpoint(value);
+		 arm.enable();
 
 	}
 }
