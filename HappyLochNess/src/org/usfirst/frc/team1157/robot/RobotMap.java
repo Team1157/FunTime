@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  */
 public class RobotMap {
 
-    public static CANJaguar rollerMotor;// = new CANTalon(6);
-    public static CANJaguar armMotor; // = new CANTalon(7);
+    public static CANJaguar rollerMotor;// = new CANJagur(6);
+    public static CANJaguar armMotor; // = new CANJagur(7);
 
     public static Gyro gyro = new AnalogGyro(0);
 
