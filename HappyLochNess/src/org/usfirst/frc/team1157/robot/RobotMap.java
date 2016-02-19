@@ -2,7 +2,7 @@ package org.usfirst.frc.team1157.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  */
 public class RobotMap {
 
-    public static CANTalon rollerMotor;// = new CANTalon(6);
-    public static CANTalon armMotor; // = new CANTalon(6);
+    public static CANJaguar rollerMotor;// = new CANTalon(6);
+    public static CANJaguar armMotor; // = new CANTalon(7);
 
     public static Gyro gyro = new AnalogGyro(0);
 

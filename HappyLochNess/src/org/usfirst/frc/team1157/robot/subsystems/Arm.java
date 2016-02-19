@@ -3,7 +3,7 @@ package org.usfirst.frc.team1157.robot.subsystems;
 import org.usfirst.frc.team1157.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Arm extends PIDSubsystem {
 
     AnalogInput pot = RobotMap.pot;
-    CANTalon motor = RobotMap.armMotor;
+    CANJaguar motor = RobotMap.armMotor;
 
     public Arm(double p, double i, double d) {
 	super("Arm", p, i, d);

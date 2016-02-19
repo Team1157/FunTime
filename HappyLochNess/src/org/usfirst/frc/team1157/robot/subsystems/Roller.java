@@ -2,7 +2,7 @@ package org.usfirst.frc.team1157.robot.subsystems;
 
 import org.usfirst.frc.team1157.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -10,13 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Roller extends Subsystem {
 
-    CANTalon motor = RobotMap.rollerMotor;
+    CANJaguar motor = RobotMap.rollerMotor;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
 
-	motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	motor.enableControl();
 	motor.set(0.0);
 	// Set the default command for a subsystem here.
