@@ -16,7 +16,7 @@ public class DriveAuto extends Command {
     double targetAngle;
 
     public DriveAuto(double Itime, double Ipower, Gyro Igyro) {
-	requires(Robot.drivetrain);
+	requires(Robot.drivetraintalon);
 	setTimeout(Itime);
 	power = Ipower;
 	gyro = Igyro;
@@ -30,7 +30,7 @@ public class DriveAuto extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	angle = gyro.getAngle();
-	Robot.drivetrain.driveArcade(power, -angle * Kp);
+	Robot.drivetraintalon.driveArcade(power, -angle * Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +40,7 @@ public class DriveAuto extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-	Robot.drivetrain.driveTank(0, 0, false);
+	Robot.drivetraintalon.driveTank(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same

@@ -18,7 +18,7 @@ public class TurnAuto extends Command {
 
     public TurnAuto(double Iangle, Gyro Igyro) {
 	// Use requires() here to declare subsystem dependencies
-	requires(Robot.drivetrain);
+	requires(Robot.drivetraintalon);
 	gyro = Igyro;
 	toAngle = Iangle;
     }
@@ -33,7 +33,7 @@ public class TurnAuto extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 	double dif = gyro.getAngle() - toAngle;
-	Robot.drivetrain.driveArcade(0, dif * Kp);
+	Robot.drivetraintalon.driveArcade(0, dif * Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -47,7 +47,7 @@ public class TurnAuto extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-	Robot.drivetrain.driveTank(0, 0, false);
+	Robot.drivetraintalon.driveTank(0, 0, false);
     }
 
     // Called when another command which requires one or more of the same

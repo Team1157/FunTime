@@ -3,21 +3,22 @@ package org.usfirst.frc.team1157.robot.subsystems;
 import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.commands.ArmWithJoystick;
 
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ArmWithoutPID extends Subsystem {
 
-    CANTalon motor = RobotMap.armMotor;
+    CANJaguar motor = RobotMap.armMotor;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
 
-	motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-	motor.enableControl();
-	motor.set(0.0);
+//	motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+//	motor.enableControl();
+//	motor.set(0.0);
 	// Set the default command for a subsystem here.
 
 	setDefaultCommand(new ArmWithJoystick());

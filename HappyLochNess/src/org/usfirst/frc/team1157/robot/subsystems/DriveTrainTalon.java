@@ -17,12 +17,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrainTalon extends Subsystem {
 
-    boolean testing = false;
+    boolean testing = true;
 
-    CANTalon right = new CANTalon(RobotMap.frontRightMotor);
-    CANTalon left = new CANTalon(RobotMap.frontLeftMotor);
-    CANTalon rightSlave = new CANTalon(RobotMap.backRightMotor);
-    CANTalon leftSlave = new CANTalon(RobotMap.backLeftMotor);
+    CANTalon right;// = new CANTalon(RobotMap.frontRightMotor);
+    CANTalon left;// = new CANTalon(RobotMap.frontLeftMotor);
+    CANTalon rightSlave;// = new CANTalon(RobotMap.backRightMotor);
+    CANTalon leftSlave;// = new CANTalon(RobotMap.backLeftMotor);
 
     private RobotDrive drive;
 
@@ -30,7 +30,12 @@ public class DriveTrainTalon extends Subsystem {
     // here. Call these from Commands.
     public DriveTrainTalon() {
 	super();
-
+	
+	right = new CANTalon(RobotMap.frontRightMotor);
+	left = new CANTalon(RobotMap.frontLeftMotor);
+	rightSlave = new CANTalon(RobotMap.backRightMotor);
+	leftSlave = new CANTalon(RobotMap.backLeftMotor);
+	
 	rightSlave.changeControlMode(TalonControlMode.Follower);
 	rightSlave.set(right.getDeviceID());
 
@@ -42,22 +47,30 @@ public class DriveTrainTalon extends Subsystem {
 	right.configNominalOutputVoltage(+0.0f, -0.0f);
 	right.configPeakOutputVoltage(+12.0f, -12.0f);
 	right.setProfile(0);
-	right.setF(0);
-	right.setP(0);
+	right.setF(0.3700);
+	right.setP(0.01);
 	right.setI(0);
-	right.setD(0);
+	right.setD(1);
 
+	left.reverseOutput(true);
 	left.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 	left.reverseSensor(false);
 	left.configNominalOutputVoltage(+0.0f, -0.0f);
 	left.configPeakOutputVoltage(+12.0f, -12.0f);
 	left.setProfile(0);
-	left.setF(0);
-	left.setP(0);
+	left.setF(0.3700);
+	left.setP(0.05);
 	left.setI(0);
-	left.setD(0);
-
-	drive = new RobotDrive(left, right);
+	left.setD(1);
+	
+//	left.changeControlMode(TalonControlMode.PercentVbus);
+//	right.changeControlMode(TalonControlMode.PercentVbus);
+	if(!testing){
+	    left.changeControlMode(TalonControlMode.Speed);
+	    right.changeControlMode(TalonControlMode.Speed);
+	    drive = new RobotDrive(left, right);
+	    drive.setMaxOutput(375); //405 is about the max RPM
+	}
 
     }
 
@@ -70,27 +83,35 @@ public class DriveTrainTalon extends Subsystem {
     }
 
     public void driveArcade(double speed, double rotate) {
-	drive.arcadeDrive(speed, rotate, true);
+	drive.arcadeDrive(speed, rotate, false);
     }
 
     public void driveJoy(Joystick joy) {
-
-	SmartDashboard.putNumber("motorOutputRight", (right.getOutputVoltage() / right.getBusVoltage()));
+	double outputRight = (right.getOutputVoltage() / right.getBusVoltage());
+	SmartDashboard.putNumber("motorOutputRight", outputRight);
 	SmartDashboard.putNumber("motorOutputLeft", (left.getOutputVoltage() / left.getBusVoltage()));
-
+	SmartDashboard.putNumber("Right Speed", right.getSpeed());
+	SmartDashboard.putNumber("Left Speed", left.getSpeed());
+	
+	
 	if (testing) {
 
 	    if (joy.getRawButton(7)) {
-		double targetSpeed = joy.getAxis(AxisType.kY) * 1500;
+		SmartDashboard.putNumber("Button 7: ", 1);
+		double targetSpeed = joy.getAxis(AxisType.kY) * 405.0;
+		SmartDashboard.putNumber("Target Speed", -targetSpeed);
+		SmartDashboard.putNumber("Left Error: ", targetSpeed-left.getSpeed());
+		SmartDashboard.putNumber("Right Error: ", -targetSpeed-right.getSpeed());
 		left.changeControlMode(TalonControlMode.Speed);
 		right.changeControlMode(TalonControlMode.Speed);
 		left.set(targetSpeed);
 		right.set(targetSpeed);
 	    } else {
+		SmartDashboard.putNumber("Button 7: ", 0);
 		left.changeControlMode(TalonControlMode.PercentVbus);
 		right.changeControlMode(TalonControlMode.PercentVbus);
-		left.set(joy.getAxis(AxisType.kY));
-		right.set(joy.getAxis(AxisType.kY));
+		left.set(-joy.getY());
+		right.set(joy.getY());
 	    }
 
 	} else {
@@ -102,7 +123,7 @@ public class DriveTrainTalon extends Subsystem {
 		    driveArcade(-joy.getY(), -joy.getZ());
 		}
 	    } else if (joy.getName().equals("Logitech RumblePad 2 USB")) {
-		driveArcade(-joy.getThrottle(), -joy.getX());
+		driveArcade(-joy.getThrottle()*405, -joy.getX()*405);
 	    } else {
 		SmartDashboard.putString("name", joy.getName());
 	    }

@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
 	AnalogInput pot;
 	AnalogInput distanceFinder;
 	int count = 0;
-	public static CameraFeeds cam = new CameraFeeds();
+	public static CameraFeeds cam; // = new CameraFeeds();
 	double smoothedValue = 0;
 	double beta = 0.05;
 
@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("find distance, turn and shoot", new distanceTurnAndShoot(gyro, distanceFinder));
 		SmartDashboard.putData("Auto mode", chooser);
 		
-		cam.init();
+		//cam.init();
 	}
 
 	/**
@@ -145,11 +145,11 @@ public class Robot extends IterativeRobot {
 		smoothedValue = smoothedValue - beta*(smoothedValue - dist);
     	SmartDashboard.putNumber("Distance Smoothed (inches):", smoothedValue);
 		double value = SmartDashboard.getNumber("Setpoint");
-		arm.setSetpoint(value);
+		//arm.setSetpoint(value);
 		Scheduler.getInstance().run();
 
 		if (SmartDashboard.getBoolean("Set PID")) {
-			setPID();
+			//setPID();
 			SmartDashboard.putBoolean("Set PID", false);
 
 		}
@@ -162,15 +162,15 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 
-	private void setPID() {
-		 arm.disable();
-		 arm = new Arm(SmartDashboard.getNumber("P"),
-		 SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
-		 arm.setInputRange(0.005, 4.855);
-		 arm.setOutputRange(-1, 1);
-		 double value = SmartDashboard.getNumber("Setpoint");
-		 arm.setSetpoint(value);
-		 arm.enable();
-
-	}
+//	private void setPID() {
+//		 arm.disable();
+//		 arm = new Arm(SmartDashboard.getNumber("P"),
+//		 SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+//		 arm.setInputRange(0.005, 4.855);
+//		 arm.setOutputRange(-1, 1);
+//		 double value = SmartDashboard.getNumber("Setpoint");
+//		 arm.setSetpoint(value);
+//		 arm.enable();
+//
+//	}
 }
