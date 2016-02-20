@@ -23,10 +23,10 @@ public class RobotMap {
 
     public static AnalogInput distanceFinder = new AnalogInput(2);
 
-    public static int frontRightMotor = 2;
-    public static int backRightMotor = 3;
-    public static int backLeftMotor = 4;
-    public static int frontLeftMotor = 5;
+    public static int frontRightMotor = 6;
+    public static int backRightMotor = 7;
+    public static int backLeftMotor = 8;
+    public static int frontLeftMotor = 9;
 
     public static CameraServer camera;
 

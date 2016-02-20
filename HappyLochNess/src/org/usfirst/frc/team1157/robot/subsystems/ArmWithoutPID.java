@@ -15,8 +15,9 @@ public class ArmWithoutPID extends Subsystem {
 
     public void initDefaultCommand() {
 
-	motor.enableControl();
-	motor.set(0.0);
+//	motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+//	motor.enableControl();
+//	motor.set(0.0);
 	// Set the default command for a subsystem here.
 
 	setDefaultCommand(new ArmWithJoystick());
