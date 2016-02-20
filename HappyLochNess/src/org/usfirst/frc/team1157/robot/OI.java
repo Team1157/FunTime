@@ -24,9 +24,9 @@ public class OI {
 	Button J2B10 = new JoystickButton(joy2, 10);
 	Button J2B8 = new JoystickButton(joy2, 8);
 
-	J1B10.whenPressed(new DriveAuto(3, 0.75, gyro));
-	J2B10.whileHeld(new RollerButton(0.25));
-	J2B11.whileHeld(new RollerButton(-1));
+	J1B10.whenPressed(new DriveAuto(2.5, 0.50, gyro));
+	J2B10.whileHeld(new RollerButton(1));
+	J2B11.whileHeld(new RollerButton(-0.4));
 	J2B8.whenPressed(new CameraToggle());
     }
 

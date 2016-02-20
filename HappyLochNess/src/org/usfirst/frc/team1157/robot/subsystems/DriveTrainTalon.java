@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrainTalon extends Subsystem {
 
-    boolean testing = true;
+    boolean testing = false;
 
     CANTalon right;// = new CANTalon(RobotMap.frontRightMotor);
     CANTalon left;// = new CANTalon(RobotMap.frontLeftMotor);
@@ -66,10 +66,10 @@ public class DriveTrainTalon extends Subsystem {
 //	left.changeControlMode(TalonControlMode.PercentVbus);
 //	right.changeControlMode(TalonControlMode.PercentVbus);
 	if(!testing){
-	    left.changeControlMode(TalonControlMode.Speed);
-	    right.changeControlMode(TalonControlMode.Speed);
+	    left.changeControlMode(TalonControlMode.PercentVbus);
+	    right.changeControlMode(TalonControlMode.PercentVbus);
 	    drive = new RobotDrive(left, right);
-	    drive.setMaxOutput(375); //405 is about the max RPM
+	   // drive.setMaxOutput(375); //405 is about the max RPM
 	}
 
     }
@@ -123,7 +123,7 @@ public class DriveTrainTalon extends Subsystem {
 		    driveArcade(-joy.getY(), -joy.getZ());
 		}
 	    } else if (joy.getName().equals("Logitech RumblePad 2 USB")) {
-		driveArcade(-joy.getThrottle()*405, -joy.getX()*405);
+		driveArcade(-joy.getThrottle(), -joy.getX());
 	    } else {
 		SmartDashboard.putString("name", joy.getName());
 	    }

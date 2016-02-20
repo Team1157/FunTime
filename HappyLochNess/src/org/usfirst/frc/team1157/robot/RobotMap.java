@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  */
 public class RobotMap {
 
-    public static CANJaguar rollerMotor;// = new CANJagur(6);
-    public static CANJaguar armMotor; // = new CANJagur(7);
+    public static CANJaguar rollerMotor = new CANJaguar(3);
+    public static CANJaguar armMotor = new CANJaguar(4);
 
     public static Gyro gyro = new AnalogGyro(0);
 
@@ -29,14 +29,4 @@ public class RobotMap {
     public static int frontLeftMotor = 9;
 
     public static CameraServer camera;
-
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static int leftMotor = 1;
-    // public static int rightMotor = 2;
-
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
 }

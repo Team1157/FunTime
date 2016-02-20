@@ -24,7 +24,7 @@ public class ArmWithoutPID extends Subsystem {
     }
 
     public void armControl(Joystick joy) {
-	motor.set(joy.getY());
+	motor.set(0.5 * joy.getY());
     }
 
     public boolean speed(double speed) {
