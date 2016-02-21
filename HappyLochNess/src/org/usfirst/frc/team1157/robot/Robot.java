@@ -70,10 +70,6 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Beta", 1.0);
 	SmartDashboard.putNumber("Tol", 3);
 	SmartDashboard.putNumber("Distance", 0);
-	// arm.setInputRange(0.005, 4.855);
-	// arm.setOutputRange(-1, 1);
-
-	SmartDashboard.putNumber("Setpoint", 0);
 
 	oi = new OI(gyro);
 	chooser = new SendableChooser();
@@ -134,7 +130,7 @@ public class Robot extends IterativeRobot {
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
 	// this line or comment it out.
-	// arm.enable();
+	// arm.enable(); TODO:arm
 	// if (autonomousCommand != null)
 	// autonomousCommand.cancel();
     }
@@ -150,12 +146,10 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Distance Raw (inches):", dist);
 	smoothedValue = smoothedValue - beta * (smoothedValue - dist);
 	SmartDashboard.putNumber("Distance Smoothed (inches):", smoothedValue);
-	double value = SmartDashboard.getNumber("Setpoint");
-	// arm.setSetpoint(value);
 	Scheduler.getInstance().run();
 
 	if (SmartDashboard.getBoolean("Set PID")) {
-	    // setPID();
+	    setPID();
 	    SmartDashboard.putBoolean("Set PID", false);
 
 	}
@@ -168,15 +162,10 @@ public class Robot extends IterativeRobot {
 	LiveWindow.run();
     }
 
-    // private void setPID() {
-    // arm.disable();
-    // arm = new Arm(SmartDashboard.getNumber("P"),
-    // SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
-    // arm.setInputRange(0.005, 4.855);
-    // arm.setOutputRange(-1, 1);
-    // double value = SmartDashboard.getNumber("Setpoint");
-    // arm.setSetpoint(value);
-    // arm.enable();
-    //
-    // }
+    private void setPID() {
+	// arm.disable();
+	// arm = new Arm(SmartDashboard.getNumber("P"),
+	// SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+	// arm.enable();
+    }
 }
