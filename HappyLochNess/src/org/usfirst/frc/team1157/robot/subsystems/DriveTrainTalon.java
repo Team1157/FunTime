@@ -30,12 +30,12 @@ public class DriveTrainTalon extends Subsystem {
     // here. Call these from Commands.
     public DriveTrainTalon() {
 	super();
-	
+
 	right = new CANTalon(RobotMap.frontRightMotor);
 	left = new CANTalon(RobotMap.frontLeftMotor);
 	rightSlave = new CANTalon(RobotMap.backRightMotor);
 	leftSlave = new CANTalon(RobotMap.backLeftMotor);
-	
+
 	rightSlave.changeControlMode(TalonControlMode.Follower);
 	rightSlave.set(right.getDeviceID());
 
@@ -62,14 +62,14 @@ public class DriveTrainTalon extends Subsystem {
 	left.setP(0.05);
 	left.setI(0);
 	left.setD(1);
-	
-//	left.changeControlMode(TalonControlMode.PercentVbus);
-//	right.changeControlMode(TalonControlMode.PercentVbus);
-	if(!testing){
+
+	// left.changeControlMode(TalonControlMode.PercentVbus);
+	// right.changeControlMode(TalonControlMode.PercentVbus);
+	if (!testing) {
 	    left.changeControlMode(TalonControlMode.PercentVbus);
 	    right.changeControlMode(TalonControlMode.PercentVbus);
 	    drive = new RobotDrive(left, right);
-	   // drive.setMaxOutput(375); //405 is about the max RPM
+	    // drive.setMaxOutput(375); //405 is about the max RPM
 	}
 
     }
@@ -92,16 +92,15 @@ public class DriveTrainTalon extends Subsystem {
 	SmartDashboard.putNumber("motorOutputLeft", (left.getOutputVoltage() / left.getBusVoltage()));
 	SmartDashboard.putNumber("Right Speed", right.getSpeed());
 	SmartDashboard.putNumber("Left Speed", left.getSpeed());
-	
-	
+
 	if (testing) {
 
 	    if (joy.getRawButton(7)) {
 		SmartDashboard.putNumber("Button 7: ", 1);
 		double targetSpeed = joy.getAxis(AxisType.kY) * 405.0;
 		SmartDashboard.putNumber("Target Speed", -targetSpeed);
-		SmartDashboard.putNumber("Left Error: ", targetSpeed-left.getSpeed());
-		SmartDashboard.putNumber("Right Error: ", -targetSpeed-right.getSpeed());
+		SmartDashboard.putNumber("Left Error: ", targetSpeed - left.getSpeed());
+		SmartDashboard.putNumber("Right Error: ", -targetSpeed - right.getSpeed());
 		left.changeControlMode(TalonControlMode.Speed);
 		right.changeControlMode(TalonControlMode.Speed);
 		left.set(targetSpeed);
@@ -117,10 +116,18 @@ public class DriveTrainTalon extends Subsystem {
 	} else {
 
 	    if (joy.getName().equals("Logitech Extreme 3D")) {
-		if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
-		    driveArcade(0, -joy.getZ());
+		if (!joy.getTrigger()) {
+		    if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
+			driveArcade(0, -joy.getZ());
+		    } else {
+			driveArcade(-joy.getY(), -joy.getZ());
+		    }
 		} else {
-		    driveArcade(-joy.getY(), -joy.getZ());
+		    if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
+			driveArcade(0, -joy.getZ());
+		    } else {
+			driveArcade(joy.getY(), -joy.getZ());
+		    }
 		}
 	    } else if (joy.getName().equals("Logitech RumblePad 2 USB")) {
 		driveArcade(-joy.getThrottle(), -joy.getX());
