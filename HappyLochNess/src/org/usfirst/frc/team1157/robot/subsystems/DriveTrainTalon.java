@@ -116,18 +116,14 @@ public class DriveTrainTalon extends Subsystem {
 	} else {
 
 	    if (joy.getName().equals("Logitech Extreme 3D")) {
-		if (!joy.getTrigger()) {
-		    if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
-			driveArcade(0, -joy.getZ());
-		    } else {
-			driveArcade(-joy.getY(), -joy.getZ());
-		    }
+		if (joy.getRawButton(2)) {
+		    driveArcade(0, (-joy.getZ()) * 0.5);
+		} else if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
+		    driveArcade(0, -joy.getZ());
+		} else if (joy.getTrigger()) {
+		    driveArcade(joy.getY(), -joy.getZ());
 		} else {
-		    if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
-			driveArcade(0, -joy.getZ());
-		    } else {
-			driveArcade(joy.getY(), -joy.getZ());
-		    }
+		    driveArcade(-joy.getY(), -joy.getZ());
 		}
 	    } else if (joy.getName().equals("Logitech RumblePad 2 USB")) {
 		driveArcade(-joy.getThrottle(), -joy.getX());
