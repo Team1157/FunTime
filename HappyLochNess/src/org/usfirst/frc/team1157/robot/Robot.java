@@ -121,7 +121,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
 	SmartDashboard.putNumber("Gyro", gyro.getAngle());
-	SmartDashboard.putNumber("Pot", pot.getValue());
+	//SmartDashboard.putNumber("Pot", pot.getValue());
 	Scheduler.getInstance().run();
     }
 
@@ -140,8 +140,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
 	SmartDashboard.putNumber("Gyro", gyro.getAngle());
-	SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
-	SmartDashboard.putNumber("Pot", pot.getValue());
+	//SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
+	//SmartDashboard.putNumber("Pot", pot.getValue());
 	double dist = (distanceFinder.getAverageVoltage() * 1000.0) / 9.8;
 	SmartDashboard.putNumber("Distance Raw (inches):", dist);
 	smoothedValue = smoothedValue - beta * (smoothedValue - dist);

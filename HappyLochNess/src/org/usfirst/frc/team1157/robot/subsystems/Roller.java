@@ -15,12 +15,8 @@ public class Roller extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-
-//	motor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-//	motor.enableControl();
-//	motor.set(0.0);
 	// Set the default command for a subsystem here.
-	//setDefaultCommand(new RollerWithJoystick());
+	//setDefaultCommand(new);
     }
 
     public boolean speed(double speed) {
