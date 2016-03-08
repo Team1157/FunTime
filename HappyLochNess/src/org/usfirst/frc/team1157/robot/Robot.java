@@ -75,7 +75,7 @@ public class Robot extends IterativeRobot {
 	chooser = new SendableChooser();
 	chooser.addObject("back and forth", new overAndBack(gyro));
 	chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, gyro));
-	chooser.addObject("turn 90", new TurnAuto(90, gyro));
+	chooser.addObject("turn 10 times", new TurnAuto(3600, gyro));
 	chooser.addObject("DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder));
 	chooser.addObject("DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder));
 	SmartDashboard.putData("Auto mode", chooser);
