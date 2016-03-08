@@ -7,10 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArmWithJoystick extends Command {
-
-    public ArmWithJoystick() {
-	requires(Robot.arm);
+public class ArmPIDAuto extends Command {
+	double position;
+	
+    public ArmPIDAuto(double pos) {
+        requires(Robot.arm);
+        position = pos;
     }
 
     // Called just before this Command runs the first time
@@ -19,12 +21,12 @@ public class ArmWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	Robot.arm.armControl(Robot.oi.getJoystick(false));
+		Robot.arm.setSetpoint(position);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -34,6 +36,6 @@ public class ArmWithJoystick extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-	end();
+    	end();
     }
 }

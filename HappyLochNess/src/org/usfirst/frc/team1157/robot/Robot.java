@@ -37,8 +37,8 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static DriveTrain drivetrain; // = new DriveTrain();
     public static DriveTrainTalon drivetraintalon = new DriveTrainTalon();
-    public static Arm arm; // = new Arm(2.0, 0.0, 0.0);
-    public static ArmWithoutPID armwopid = new ArmWithoutPID();
+    public static Arm arm = new Arm(2.0, 0.0, 0.0);
+    public static ArmWithoutPID armwopid; //= new ArmWithoutPID();
     Command autonomousCommand;
     SendableChooser chooser;
     Gyro gyro;

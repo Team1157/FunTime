@@ -19,7 +19,7 @@ public class RobotMap {
 
     public static Gyro gyro = new AnalogGyro(0);
 
-    public static AnalogInput pot;// = new AnalogInput(1);
+    public static AnalogInput pot = new AnalogInput(1);
 
     public static AnalogInput distanceFinder = new AnalogInput(2);
 
