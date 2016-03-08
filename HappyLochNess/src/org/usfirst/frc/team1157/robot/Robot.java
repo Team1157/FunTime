@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
+import org.usfirst.frc.team1157.robot.commands.PortcullisAuto;
 import org.usfirst.frc.team1157.robot.commands.TurnAuto;
 import org.usfirst.frc.team1157.robot.commands.distanceTurnAndShootLeft;
 import org.usfirst.frc.team1157.robot.commands.distanceTurnAndShootRight;
@@ -73,11 +74,12 @@ public class Robot extends IterativeRobot {
 
 	oi = new OI(gyro);
 	chooser = new SendableChooser();
-	chooser.addObject("back and forth", new overAndBack(gyro));
+	chooser.addObject("Over and Back", new overAndBack(gyro));
 	chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, gyro));
-	chooser.addObject("turn 10 times", new TurnAuto(3600, gyro));
+	chooser.addObject("Turn 10 Times", new TurnAuto(3600, gyro));
 	chooser.addObject("DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder));
 	chooser.addObject("DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder));
+	chooser.addObject("Lift Portcullis", new PortcullisAuto(gyro));
 	SmartDashboard.putData("Auto mode", chooser);
 
 	// cam.init();
