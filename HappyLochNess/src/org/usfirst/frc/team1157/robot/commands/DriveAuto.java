@@ -15,6 +15,12 @@ public class DriveAuto extends Command {
     Gyro gyro;
     double targetAngle;
 
+    /**
+     * 
+     * @param Itime how long to go for in seconds
+     * @param Ipower what speed to go at (from -1 to 1)
+     * @param Igyro pass gyro
+     */
     public DriveAuto(double Itime, double Ipower, Gyro Igyro) {
 	requires(Robot.drivetraintalon);
 	setTimeout(Itime);

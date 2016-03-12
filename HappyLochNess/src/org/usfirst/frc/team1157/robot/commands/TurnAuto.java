@@ -16,6 +16,11 @@ public class TurnAuto extends Command {
     double Kp = 0.03;
     double tolerance = 0.5;
 
+    /**
+     * 
+     * @param Iangle the number of degrees to turn
+     * @param Igyro pass in gyro
+     */
     public TurnAuto(double Iangle, Gyro Igyro) {
 	// Use requires() here to declare subsystem dependencies
 	requires(Robot.drivetraintalon);

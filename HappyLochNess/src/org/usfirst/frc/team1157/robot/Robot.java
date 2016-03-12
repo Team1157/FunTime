@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team1157.robot.commands.DriveAuto;
 import org.usfirst.frc.team1157.robot.commands.PortcullisAuto;
+import org.usfirst.frc.team1157.robot.commands.SquareAuto;
 import org.usfirst.frc.team1157.robot.commands.TurnAuto;
 import org.usfirst.frc.team1157.robot.commands.distanceTurnAndShootLeft;
 import org.usfirst.frc.team1157.robot.commands.distanceTurnAndShootRight;
@@ -80,6 +81,7 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder));
 	chooser.addObject("DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder));
 	chooser.addObject("Lift Portcullis", new PortcullisAuto(gyro));
+	chooser.addObject("Drive in a Square", new SquareAuto(gyro));
 	SmartDashboard.putData("Auto mode", chooser);
 
 	// cam.init();
