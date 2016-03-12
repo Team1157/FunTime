@@ -16,7 +16,7 @@ public class Arm extends PIDSubsystem {
     AnalogInput pot = RobotMap.pot;
     CANJaguar motor = RobotMap.armMotor;
     double inMin = 0.005; // TODO:find the correct numbers that go here
-    double inMax = 4.855;
+    double inMax = 4.8;
 
     public Arm(double p, double i, double d) {
 	super("Arm", p, i, d);

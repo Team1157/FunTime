@@ -39,8 +39,8 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static DriveTrain drivetrain; // = new DriveTrain();
     public static DriveTrainTalon drivetraintalon = new DriveTrainTalon();
-    public static Arm arm = new Arm(2.0, 0.0, 0.0);
-    public static ArmWithoutPID armwopid; //= new ArmWithoutPID();
+    public static Arm arm;// = new Arm(2.0, 0.0, 0.0);
+    public static ArmWithoutPID armwopid= new ArmWithoutPID();
     Command autonomousCommand;
     SendableChooser chooser;
     Gyro gyro;
@@ -75,13 +75,13 @@ public class Robot extends IterativeRobot {
 
 	oi = new OI(gyro);
 	chooser = new SendableChooser();
-	chooser.addObject("Over and Back", new overAndBack(gyro));
 	chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, gyro));
-	chooser.addObject("Turn 10 Times", new TurnAuto(3600, gyro));
 	chooser.addObject("DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder));
 	chooser.addObject("DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder));
-	chooser.addObject("Lift Portcullis", new PortcullisAuto(gyro));
-	chooser.addObject("Drive in a Square", new SquareAuto(gyro));
+	//chooser.addObject("Lift Portcullis", new PortcullisAuto(gyro));
+	chooser.addObject("DEMO: Drive in a Square", new SquareAuto(gyro));
+	chooser.addObject("DEMO: Over and Back", new overAndBack(gyro));
+	chooser.addObject("DEMO: Turn 10 Times", new TurnAuto(3600, gyro));
 	SmartDashboard.putData("Auto mode", chooser);
 
 	// cam.init();
@@ -144,8 +144,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
 	SmartDashboard.putNumber("Gyro", gyro.getAngle());
-	//SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
-	//SmartDashboard.putNumber("Pot", pot.getValue());
+	SmartDashboard.putNumber("PotVolt", pot.getAverageVoltage());
+	SmartDashboard.putNumber("Pot", pot.getValue());
 	double dist = (distanceFinder.getAverageVoltage() * 1000.0) / 9.8;
 	SmartDashboard.putNumber("Distance Raw (inches):", dist);
 	smoothedValue = smoothedValue - beta * (smoothedValue - dist);
@@ -167,9 +167,9 @@ public class Robot extends IterativeRobot {
     }
 
     private void setPID() {
-	// arm.disable();
-	// arm = new Arm(SmartDashboard.getNumber("P"),
-	// SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
-	// arm.enable();
+	//arm.disable();
+	//arm = new Arm(SmartDashboard.getNumber("P"),
+	//SmartDashboard.getNumber("I"), SmartDashboard.getNumber("D"));
+	//arm.enable();
     }
 }

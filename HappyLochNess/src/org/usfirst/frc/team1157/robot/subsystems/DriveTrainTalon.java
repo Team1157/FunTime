@@ -19,10 +19,10 @@ public class DriveTrainTalon extends Subsystem {
 
     boolean testing = false;
 
-    CANTalon right;// = new CANTalon(RobotMap.frontRightMotor);
-    CANTalon left;// = new CANTalon(RobotMap.frontLeftMotor);
-    CANTalon rightSlave;// = new CANTalon(RobotMap.backRightMotor);
-    CANTalon leftSlave;// = new CANTalon(RobotMap.backLeftMotor);
+    CANTalon right = new CANTalon(RobotMap.frontRightMotor);
+    CANTalon left = new CANTalon(RobotMap.frontLeftMotor);
+    CANTalon rightSlave = new CANTalon(RobotMap.backRightMotor);
+    CANTalon leftSlave = new CANTalon(RobotMap.backLeftMotor);
 
     private RobotDrive drive;
 
