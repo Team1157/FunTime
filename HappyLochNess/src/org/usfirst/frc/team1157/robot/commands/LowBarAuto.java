@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LowBarAuto extends CommandGroup {
     
     public  LowBarAuto() {
-	addParallel(m_parent);
-	addSequential(m_parent);
+	//addParallel(m_parent);
+	//SaddSequential(m_parent);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
