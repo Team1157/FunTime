@@ -1,28 +1,15 @@
 package org.usfirst.frc.team1157.robot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class distanceTurnAndShootLeft extends CommandGroup {
+public class LowBarAuto extends CommandGroup {
     
-    public  distanceTurnAndShootLeft(Gyro gyro, AnalogInput distanceFinder, boolean reverse) {
-	if(reverse) {
-	    addSequential(new DriveAuto(1.5, -1, gyro)); 
-	    addSequential(new TurnAuto(180, gyro));
-	} else {
-	    addSequential(new DriveAuto(3, 0.50, gyro)); 
-	}
-	
-	addSequential(new DriveAutoDistance(0, 0.2, gyro, distanceFinder));
-	addSequential(new TurnAuto(50, gyro));
-	addSequential(new DriveAuto(3, 0.4, gyro));
-	addSequential(new RollerMove(1, 4));
-	
+    public  LowBarAuto() {
+	addParallel(m_parent);
+	addSequential(m_parent);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

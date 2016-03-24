@@ -17,12 +17,12 @@ public class DriveAutoDistance extends Command {
     Gyro gyro;
     AnalogInput distanceFinder;
     double smoothedValue = 100;
-    double beta = 0.05;
+    double beta = 1.0;
 
     public DriveAutoDistance(double Idistance, double Ipower, Gyro Igyro, AnalogInput IdistanceFinder) {
 	requires(Robot.drivetraintalon);
 
-	distance = Idistance;
+	//distance = Idistance;
 	power = Ipower;
 	gyro = Igyro;
 	distanceFinder = IdistanceFinder;
@@ -34,6 +34,7 @@ public class DriveAutoDistance extends Command {
     protected void initialize() {
 	gyro.reset();
 	beta = SmartDashboard.getNumber("Beta");
+	distance = SmartDashboard.getNumber("DTS:Distance");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -47,6 +48,8 @@ public class DriveAutoDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+	SmartDashboard.putNumber("Compare Distance: ", smoothedValue);
+	SmartDashboard.putNumber("Target Distance: ", distance);
 	if (smoothedValue <= distance) {
 	    return true;
 	} else {

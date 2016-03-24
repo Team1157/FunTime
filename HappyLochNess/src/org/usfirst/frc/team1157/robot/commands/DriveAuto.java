@@ -4,6 +4,7 @@ import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,6 +32,7 @@ public class DriveAuto extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 	gyro.reset();
+	//setTimeout(SmartDashboard.getNumber("DTS:time after turn", 3));
     }
 
     // Called repeatedly when this Command is scheduled to run

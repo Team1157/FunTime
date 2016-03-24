@@ -13,7 +13,7 @@ public class TurnAuto extends Command {
 
     Gyro gyro;
     double toAngle, angle;
-    double Kp = 0.03;
+    double Kp = 0.025;
     double tolerance = 0.5;
 
     /**

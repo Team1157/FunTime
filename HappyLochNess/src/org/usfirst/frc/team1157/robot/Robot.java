@@ -47,8 +47,8 @@ public class Robot extends IterativeRobot {
     AnalogInput pot;
     AnalogInput distanceFinder;
     int count = 0;
-    public static CameraFeeds cam; // = new CameraFeeds();
-    CameraServer server = CameraServer.getInstance();
+    public static CameraFeeds cam = new CameraFeeds();
+    //CameraServer server = CameraServer.getInstance();
     double smoothedValue = 0;
     double beta = 0.05;
 
@@ -57,8 +57,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-	server.setQuality(50);
-	server.startAutomaticCapture("cam0");
+	//server.setQuality(50);
+	//server.startAutomaticCapture("cam0");
 	gyro = RobotMap.gyro;
 	pot = RobotMap.pot;
 	distanceFinder = RobotMap.distanceFinder;
@@ -72,19 +72,24 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Beta", 1.0);
 	SmartDashboard.putNumber("Tol", 3);
 	SmartDashboard.putNumber("Distance", 0);
+	
+	SmartDashboard.putNumber("DTS:time after turn", 3.0);
+	SmartDashboard.putNumber("DTS:Distance", 42);
 
 	oi = new OI(gyro);
 	chooser = new SendableChooser();
-	chooser.addDefault("Brute Force", new DriveAuto(2, 0.5, gyro));
-	chooser.addObject("DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder));
-	chooser.addObject("DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder));
+	chooser.addDefault("Brute Force", new DriveAuto(3.5, 0.5, gyro));
+	chooser.addObject("DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder, false));
+	chooser.addObject("DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder, false));
+	chooser.addObject("REVERSE DTS:Left", new distanceTurnAndShootLeft(gyro, distanceFinder, true));
+	chooser.addObject("REVERSE DTS:Right", new distanceTurnAndShootRight(gyro, distanceFinder, true));
 	//chooser.addObject("Lift Portcullis", new PortcullisAuto(gyro));
-	chooser.addObject("DEMO: Drive in a Square", new SquareAuto(gyro));
-	chooser.addObject("DEMO: Over and Back", new overAndBack(gyro));
-	chooser.addObject("DEMO: Turn 10 Times", new TurnAuto(3600, gyro));
+	//chooser.addObject("DEMO: Drive in a Square", new SquareAuto(gyro));
+	//chooser.addObject("DEMO: Over and Back", new overAndBack(gyro));
+	//chooser.addObject("DEMO: Turn 10 Times", new TurnAuto(3600, gyro));
 	SmartDashboard.putData("Auto mode", chooser);
 
-	// cam.init();
+	cam.init();
     }
 
     /**
