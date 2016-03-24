@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveAuto extends Command {
 
     double startTime, power, angle;
-    double Kp = 0.1;
+    double Kp = 0.025;
     Gyro gyro;
     double targetAngle;
 
