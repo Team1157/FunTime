@@ -117,7 +117,7 @@ public class DriveTrainTalon extends Subsystem {
 
 	    if (joy.getName().equals("Logitech Extreme 3D")) {
 		if (joy.getRawButton(2)) {
-		    driveArcade(-0.4*joy.getY(), (-joy.getZ()) * 0.3);
+		    driveArcade(-0.4*joy.getY(), (-joy.getZ()) * 0.5);
 		} else if (joy.getZ() > 0.5 || joy.getZ() < -0.5) {
 		    driveArcade(0, -joy.getZ());
 		} else if (joy.getTrigger()) {

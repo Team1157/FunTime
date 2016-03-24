@@ -15,7 +15,7 @@ public class distanceTurnAndShootRight extends CommandGroup {
 	    addSequential(new DriveAuto(1.5, -1, gyro));
 	    addSequential(new TurnAuto(180, gyro));
 	} else {
-	    addSequential(new DriveAuto(3, 0.6, gyro));
+	    addSequential(new DriveAuto(2.5, 0.6, gyro));
 	}
 	
 	addSequential(new DriveAutoDistance(0, 0.2, gyro, distanceFinder));
