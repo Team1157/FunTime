@@ -31,8 +31,8 @@ public class OI {
 	J1B11.whenPressed(new CameraToggle());
 	J2B10.whileHeld(new RollerButton(1));
 	J2B11.whileHeld(new RollerButton(-0.4));
-	J2B3.whileHeld(new ArmButton(1));
-	J2B2.whileHeld(new ArmButton(-1));
+	J2B3.whileHeld(new ArmButton(0.2));
+	J2B2.whileHeld(new ArmButton(-0.2));
 
     }
 

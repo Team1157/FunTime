@@ -21,7 +21,8 @@ public class distanceTurnAndShootLeft extends CommandGroup {
 	addSequential(new DriveAutoDistance(0, 0.2, gyro, distanceFinder));
 	addSequential(new TurnAuto(45, gyro));
 	addSequential(new DriveAuto(3, 0.4, gyro));
-	addSequential(new RollerMove(1, 4));
+	addParallel(new RollerMove(1, 4));
+	addSequential(new DriveAuto(3, 0.4, gyro));
 	
         // Add Commands here:
         // e.g. addSequential(new Command1());

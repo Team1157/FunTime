@@ -74,7 +74,7 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Distance", 0);
 	
 	SmartDashboard.putNumber("DTS:time after turn", 3.0);
-	SmartDashboard.putNumber("DTS:Distance", 36);
+	SmartDashboard.putNumber("DTS:Distance", 25);
 
 	oi = new OI(gyro);
 	chooser = new SendableChooser();

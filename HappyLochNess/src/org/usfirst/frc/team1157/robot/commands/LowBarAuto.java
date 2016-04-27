@@ -1,15 +1,16 @@
 package org.usfirst.frc.team1157.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  *
  */
 public class LowBarAuto extends CommandGroup {
     
-    public  LowBarAuto() {
-	//addParallel(m_parent);
-	//SaddSequential(m_parent);
+    public  LowBarAuto(Gyro gyro) {
+	addSequential(new ArmButton(-0.2), 1.2);
+	//addSequential(new DriveAuto(3, 0.4, gyro));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
